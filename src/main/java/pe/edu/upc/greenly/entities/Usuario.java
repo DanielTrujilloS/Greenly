@@ -15,8 +15,7 @@ public class Usuario {
     private boolean enable;
 
     // Relación uno a uno con Rol
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "rol_id", referencedColumnName = "id")
+    @OneToOne(mappedBy = "usuario")
     private Rol rol;
 
     // Constructor por defecto
