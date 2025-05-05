@@ -9,5 +9,4 @@ public class GreenlyApplication {
     public static void main(String[] args) {
         SpringApplication.run(GreenlyApplication.class, args);
     }
-
 }

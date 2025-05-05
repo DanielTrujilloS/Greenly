@@ -36,9 +36,6 @@ public class Donacion {
 
     }
 
-
-
-
     /*
     public int getId() {
         return id;

@@ -14,8 +14,7 @@ public class TipoDonacion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String estado;
-    private LocalDate fecha;
+    private String nombre;
 
     @JsonIgnore
     @OneToMany(mappedBy = "tipoDonacion", fetch = FetchType.EAGER)
@@ -23,10 +22,9 @@ public class TipoDonacion {
 
     public TipoDonacion() {}
 
-    public TipoDonacion(Long id, String estado, LocalDate fecha, List<Donacion> donaciones) {
+    public TipoDonacion(Long id, String nombre, List<Donacion> donaciones) {
         this.id = id;
-        this.estado = estado;
-        this.fecha = fecha;
+        this.nombre = nombre;
         this.donaciones = donaciones;
     }
 
@@ -38,20 +36,12 @@ public class TipoDonacion {
         this.id = id;
     }
 
-    public String getEstado() {
-        return estado;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
-
-    public LocalDate getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(LocalDate fecha) {
-        this.fecha = fecha;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public List<Donacion> getDonaciones() {

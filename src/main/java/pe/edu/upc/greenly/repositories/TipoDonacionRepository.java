@@ -6,5 +6,5 @@ import pe.edu.upc.greenly.entities.TipoDonacion;
 import java.util.List;
 
 public interface TipoDonacionRepository extends JpaRepository<TipoDonacion, Long> {
-
+    List<TipoDonacion> findByNombre(String nombre);
 }
