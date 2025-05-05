@@ -10,7 +10,7 @@ public class Donacion {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     private String name;
     private String descripcion;
     private Integer montoDonado;
@@ -36,12 +36,11 @@ public class Donacion {
 
     }
 
-    /*
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -101,28 +100,19 @@ public class Donacion {
         this.idCampaña = idCampaña;
     }
 
-    public Long getIdTipoDonacion() {
-        return idTipoDonacion;
-    }
-
-    public void setIdTipoDonacion(Long idTipoDonacion) {
-        this.idTipoDonacion = idTipoDonacion;
-    }
-
-    public Long getIdEstadoDonacion() {
-        return idEstadoDonacion;
-    }
-
-    public void setIdEstadoDonacion(Long idEstadoDonacion) {
-        this.idEstadoDonacion = idEstadoDonacion;
-    }
-
-    public List<EstadoDonacion> getEstadoDonacion() {
+    public EstadoDonacion getEstadoDonacion() {
         return estadoDonacion;
     }
 
-    public void setEstadoDonacion(List<EstadoDonacion> estadoDonacion) {
+    public void setEstadoDonacion(EstadoDonacion estadoDonacion) {
         this.estadoDonacion = estadoDonacion;
     }
-        */
+
+    public TipoDonacion getTipoDonacion() {
+        return tipoDonacion;
+    }
+
+    public void setTipoDonacion(TipoDonacion tipoDonacion) {
+        this.tipoDonacion = tipoDonacion;
+    }
 }
