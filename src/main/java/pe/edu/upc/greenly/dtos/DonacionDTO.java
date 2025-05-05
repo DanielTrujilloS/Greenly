@@ -1,15 +1,13 @@
-package pe.edu.upc.greenly.entities;
+package pe.edu.upc.greenly.dtos;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import lombok.Data;
 
 import java.time.LocalDate;
 
-@Entity
-@Table(name = "donaciones")
-public class Donacion {
+public class DonacionDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
     private String descripcion;
@@ -18,28 +16,23 @@ public class Donacion {
     private LocalDate fechaDonacion;
     private Long idDonante;
     private Long idCampaña;
-    /*
     private Long idTipoDonacion;
     private Long idEstadoDonacion;
-     */
-
-    @ManyToOne
-    @JoinColumn(name = "estado_donacion_id")
-    private EstadoDonacion estadoDonacion;
-
-    @ManyToOne
-    @JoinColumn(name = "tipo_donacion_id")
-    private TipoDonacion tipoDonacion;
 
 
-    public Donacion() {
-
+    public DonacionDTO(int id, String name, String descripcion, Integer montoDonado, String metodoEntrega, LocalDate fechaDonacion, Long idDonante, Long idCampaña, Long idTipoDonacion, Long idEstadoDonacion) {
+        this.id = id;
+        this.name = name;
+        this.descripcion = descripcion;
+        this.montoDonado = montoDonado;
+        this.metodoEntrega = metodoEntrega;
+        this.fechaDonacion = fechaDonacion;
+        this.idDonante = idDonante;
+        this.idCampaña = idCampaña;
+        this.idTipoDonacion = idTipoDonacion;
+        this.idEstadoDonacion = idEstadoDonacion;
     }
 
-
-
-
-    /*
     public int getId() {
         return id;
     }
@@ -119,13 +112,4 @@ public class Donacion {
     public void setIdEstadoDonacion(Long idEstadoDonacion) {
         this.idEstadoDonacion = idEstadoDonacion;
     }
-
-    public List<EstadoDonacion> getEstadoDonacion() {
-        return estadoDonacion;
-    }
-
-    public void setEstadoDonacion(List<EstadoDonacion> estadoDonacion) {
-        this.estadoDonacion = estadoDonacion;
-    }
-        */
 }

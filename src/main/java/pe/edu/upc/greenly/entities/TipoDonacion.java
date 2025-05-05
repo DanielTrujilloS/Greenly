@@ -1,30 +1,40 @@
 package pe.edu.upc.greenly.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import jdk.jfr.Enabled;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
-@Table(name = "tipoDonacion")
+@Table(name = "tipoDonaciones")
 public class TipoDonacion {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     private String estado;
     private LocalDate fecha;
 
-    @ManyToOne
-    @JoinColumn(name = "donacion_id")
-    private Donacion donacion;
+    @JsonIgnore
+    @OneToMany(mappedBy = "tipoDonacion", fetch = FetchType.EAGER)
+    private List<Donacion> donaciones;
 
-    public int getId() {
+    public TipoDonacion() {}
+
+    public TipoDonacion(Long id, String estado, LocalDate fecha, List<Donacion> donaciones) {
+        this.id = id;
+        this.estado = estado;
+        this.fecha = fecha;
+        this.donaciones = donaciones;
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -44,11 +54,11 @@ public class TipoDonacion {
         this.fecha = fecha;
     }
 
-    public Donacion getDonacion() {
-        return donacion;
+    public List<Donacion> getDonaciones() {
+        return donaciones;
     }
 
-    public void setDonacion(Donacion donacion) {
-        this.donacion = donacion;
+    public void setDonaciones(List<Donacion> donaciones) {
+        this.donaciones = donaciones;
     }
 }
