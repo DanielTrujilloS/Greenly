@@ -4,14 +4,17 @@ public class RolDTO {
 
     private int id;
     private String rol;
+    private int usuarioId;
 
-    // Constructor
-    public RolDTO(int id, String rol) {
+    public RolDTO(int id, String rol, int usuarioId) {
         this.id = id;
         this.rol = rol;
+        this.usuarioId = usuarioId;
     }
 
-    // Getters y Setters
+    public RolDTO() {
+    }
+
     public int getId() {
         return id;
     }
@@ -26,5 +29,22 @@ public class RolDTO {
 
     public void setRol(String rol) {
         this.rol = rol;
+    }
+
+    public int getUsuarioId() {
+        return usuarioId;
+    }
+
+    public void setUsuarioId(int usuarioId) {
+        this.usuarioId = usuarioId;
+    }
+
+    @Override
+    public String toString() {
+        return "RolDTO{" +
+                "id=" + id +
+                ", rol='" + rol + '\'' +
+                ", usuarioId=" + usuarioId +
+                '}';
     }
 }

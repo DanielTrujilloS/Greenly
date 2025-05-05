@@ -6,18 +6,17 @@ public class UsuarioDTO {
     private String username;
     private String password;
     private boolean enable;
-    private RolDTO rol; // Relación con RolDTO
 
-    // Constructor
-    public UsuarioDTO(int id, String username, String password, boolean enable, RolDTO rol) {
+    public UsuarioDTO(int id, String username, String password, boolean enable) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.enable = enable;
-        this.rol = rol;
     }
 
-    // Getters y Setters
+    public UsuarioDTO() {
+    }
+
     public int getId() {
         return id;
     }
@@ -50,11 +49,13 @@ public class UsuarioDTO {
         this.enable = enable;
     }
 
-    public RolDTO getRol() {
-        return rol;
-    }
-
-    public void setRol(RolDTO rol) {
-        this.rol = rol;
+    @Override
+    public String toString() {
+        return "UsuarioDTO{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", enable=" + enable +
+                '}';
     }
 }

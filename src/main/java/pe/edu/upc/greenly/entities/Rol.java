@@ -13,7 +13,8 @@ public class Rol {
     private String rol;
 
     // Relación uno a uno con Usuario
-    @OneToOne(mappedBy = "rol", fetch = FetchType.LAZY)
+    @OneToOne
+    @JoinColumn(name = "usuario_id",referencedColumnName = "id")
     private Usuario usuario;
 
     // Constructor por defecto
