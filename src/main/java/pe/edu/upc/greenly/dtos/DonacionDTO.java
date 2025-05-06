@@ -11,7 +11,7 @@ public class DonacionDTO {
     private int id;
     private String name;
     private String descripcion;
-    private Integer montoDonado;
+    private Double montoDonado;
     private String metodoEntrega;
     private LocalDate fechaDonacion;
     private Long idDonante;
@@ -19,8 +19,7 @@ public class DonacionDTO {
     private Long idTipoDonacion;
     private Long idEstadoDonacion;
 
-
-    public DonacionDTO(int id, String name, String descripcion, Integer montoDonado, String metodoEntrega, LocalDate fechaDonacion, Long idDonante, Long idCampaña, Long idTipoDonacion, Long idEstadoDonacion) {
+    public DonacionDTO(int id, String name, String descripcion, Double montoDonado, String metodoEntrega, LocalDate fechaDonacion, Long idDonante, Long idCampaña, Long idTipoDonacion, Long idEstadoDonacion) {
         this.id = id;
         this.name = name;
         this.descripcion = descripcion;
@@ -57,11 +56,11 @@ public class DonacionDTO {
         this.descripcion = descripcion;
     }
 
-    public Integer getMontoDonado() {
+    public Double getMontoDonado() {
         return montoDonado;
     }
 
-    public void setMontoDonado(Integer montoDonado) {
+    public void setMontoDonado(Double montoDonado) {
         this.montoDonado = montoDonado;
     }
 

@@ -13,15 +13,24 @@ public class Donacion {
     private Long id;
     private String name;
     private String descripcion;
-    private Integer montoDonado;
+    private Double montoDonado;
     private String metodoEntrega;
     private LocalDate fechaDonacion;
+
+    /*
     private Long idDonante;
     private Long idCampaña;
-    /*
     private Long idTipoDonacion;
     private Long idEstadoDonacion;
-     */
+    */
+
+    @ManyToOne
+    @JoinColumn(name = "donante_id")
+    private Donante donante;
+
+    @ManyToOne
+    @JoinColumn(name = "campania_id")
+    private Campaña campania;
 
     @ManyToOne
     @JoinColumn(name = "estado_donacion_id")
@@ -31,9 +40,19 @@ public class Donacion {
     @JoinColumn(name = "tipo_donacion_id")
     private TipoDonacion tipoDonacion;
 
-
     public Donacion() {
+    }
 
+    public Donacion(Long id, String name, String descripcion, Double montoDonado, String metodoEntrega, LocalDate fechaDonacion, Donante donante, Campaña campania, TipoDonacion tipoDonacion, EstadoDonacion estadoDonacion) {
+        this.id = id;
+        this.name = name;
+        this.descripcion = descripcion;
+        this.montoDonado = montoDonado;
+        this.fechaDonacion = fechaDonacion;
+        this.donante = donante;
+        this.campania = campania;
+        this.tipoDonacion = tipoDonacion;
+        this.estadoDonacion = estadoDonacion;
     }
 
     public Long getId() {
@@ -60,11 +79,11 @@ public class Donacion {
         this.descripcion = descripcion;
     }
 
-    public Integer getMontoDonado() {
+    public Double getMontoDonado() {
         return montoDonado;
     }
 
-    public void setMontoDonado(Integer montoDonado) {
+    public void setMontoDonado(Double montoDonado) {
         this.montoDonado = montoDonado;
     }
 
@@ -84,20 +103,20 @@ public class Donacion {
         this.fechaDonacion = fechaDonacion;
     }
 
-    public Long getIdDonante() {
-        return idDonante;
+    public Donante getDonante() {
+        return donante;
     }
 
-    public void setIdDonante(Long idDonante) {
-        this.idDonante = idDonante;
+    public void setDonante(Donante donante) {
+        this.donante = donante;
     }
 
-    public Long getIdCampaña() {
-        return idCampaña;
+    public Campaña getCampania() {
+        return campania;
     }
 
-    public void setIdCampaña(Long idCampaña) {
-        this.idCampaña = idCampaña;
+    public void setCampania(Campaña campania) {
+        this.campania = campania;
     }
 
     public EstadoDonacion getEstadoDonacion() {
