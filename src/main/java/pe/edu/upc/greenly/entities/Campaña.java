@@ -22,7 +22,6 @@ public class Campaña {
     @JoinColumn(name="ubicacion_Campaña_id", referencedColumnName = "id")
     private Ubicacion_Campaña ubicacion_Campaña;
 
-
     public Campaña(int id, String titulo, String descripcion, LocalDate fechaInicio, LocalDate fechaFin, Ong ong, Ubicacion_Campaña ubicacion_Campaña) {
         this.id = id;
         this.titulo = titulo;

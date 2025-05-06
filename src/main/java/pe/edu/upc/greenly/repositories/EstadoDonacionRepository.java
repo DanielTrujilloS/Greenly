@@ -1,0 +1,11 @@
+package pe.edu.upc.greenly.repositories;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import pe.edu.upc.greenly.entities.EstadoDonacion;
+import pe.edu.upc.greenly.entities.TipoDonacion;
+
+import java.util.List;
+
+public interface EstadoDonacionRepository extends JpaRepository<EstadoDonacion, Long> {
+    List<EstadoDonacion> findByEstado(String estado);
+}

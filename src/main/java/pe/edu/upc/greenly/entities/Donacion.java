@@ -1,0 +1,137 @@
+package pe.edu.upc.greenly.entities;
+
+import jakarta.persistence.*;
+
+import java.time.LocalDate;
+
+@Entity
+@Table(name = "donaciones")
+public class Donacion {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String name;
+    private String descripcion;
+    private Double montoDonado;
+    private String metodoEntrega;
+    private LocalDate fechaDonacion;
+
+    /*
+    private Long idDonante;
+    private Long idCampaña;
+    private Long idTipoDonacion;
+    private Long idEstadoDonacion;
+    */
+
+    @ManyToOne
+    @JoinColumn(name = "donante_id")
+    private Donante donante;
+
+    @ManyToOne
+    @JoinColumn(name = "campania_id")
+    private Campaña campania;
+
+    @ManyToOne
+    @JoinColumn(name = "estado_donacion_id")
+    private EstadoDonacion estadoDonacion;
+
+    @ManyToOne
+    @JoinColumn(name = "tipo_donacion_id")
+    private TipoDonacion tipoDonacion;
+
+    public Donacion() {
+    }
+
+    public Donacion(Long id, String name, String descripcion, Double montoDonado, String metodoEntrega, LocalDate fechaDonacion, Donante donante, Campaña campania, TipoDonacion tipoDonacion, EstadoDonacion estadoDonacion) {
+        this.id = id;
+        this.name = name;
+        this.descripcion = descripcion;
+        this.montoDonado = montoDonado;
+        this.fechaDonacion = fechaDonacion;
+        this.donante = donante;
+        this.campania = campania;
+        this.tipoDonacion = tipoDonacion;
+        this.estadoDonacion = estadoDonacion;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public Double getMontoDonado() {
+        return montoDonado;
+    }
+
+    public void setMontoDonado(Double montoDonado) {
+        this.montoDonado = montoDonado;
+    }
+
+    public String getMetodoEntrega() {
+        return metodoEntrega;
+    }
+
+    public void setMetodoEntrega(String metodoEntrega) {
+        this.metodoEntrega = metodoEntrega;
+    }
+
+    public LocalDate getFechaDonacion() {
+        return fechaDonacion;
+    }
+
+    public void setFechaDonacion(LocalDate fechaDonacion) {
+        this.fechaDonacion = fechaDonacion;
+    }
+
+    public Donante getDonante() {
+        return donante;
+    }
+
+    public void setDonante(Donante donante) {
+        this.donante = donante;
+    }
+
+    public Campaña getCampania() {
+        return campania;
+    }
+
+    public void setCampania(Campaña campania) {
+        this.campania = campania;
+    }
+
+    public EstadoDonacion getEstadoDonacion() {
+        return estadoDonacion;
+    }
+
+    public void setEstadoDonacion(EstadoDonacion estadoDonacion) {
+        this.estadoDonacion = estadoDonacion;
+    }
+
+    public TipoDonacion getTipoDonacion() {
+        return tipoDonacion;
+    }
+
+    public void setTipoDonacion(TipoDonacion tipoDonacion) {
+        this.tipoDonacion = tipoDonacion;
+    }
+}
