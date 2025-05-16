@@ -1,8 +1,10 @@
 package pe.edu.upc.greenly.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "donante")
@@ -10,9 +12,9 @@ public class Donante {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
-    private int id;
+    private Long id;
     private String nombre;
-    private Long dni;
+    private String dni;
     private String correo;
     private String telefono;
     private String direccion;
@@ -22,8 +24,20 @@ public class Donante {
     @OneToOne
     @JoinColumn(name = "usuario_id", referencedColumnName = "id")
     private Usuario usuario;
+    @JsonIgnore
+    @OneToMany (mappedBy = "donante",fetch = FetchType.EAGER)
+    private List<Donacion> donaciones;
 
-    public Donante(int id, String nombre, Long dni, String correo, String telefono, String direccion, LocalDate fechaNacimiento, Usuario usuario) {
+    @JsonIgnore
+    @OneToMany (mappedBy = "donante",fetch = FetchType.EAGER)
+    private List<Comentario> comentarios;
+
+    @JsonIgnore
+    @OneToMany (mappedBy = "donante",fetch = FetchType.EAGER)
+    private List<CampañaFavorita> campañaFavoritas;
+
+
+    public Donante(Long id, String nombre, String dni, String correo, String telefono, String direccion, LocalDate fechaNacimiento, Usuario usuario, List<Donacion> donaciones, List<Comentario> comentarios, List<CampañaFavorita> campañaFavoritas) {
         this.id = id;
         this.nombre = nombre;
         this.dni = dni;
@@ -32,16 +46,19 @@ public class Donante {
         this.direccion = direccion;
         this.fechaNacimiento = fechaNacimiento;
         this.usuario = usuario;
+        this.donaciones = donaciones;
+        this.comentarios = comentarios;
+        this.campañaFavoritas = campañaFavoritas;
     }
 
     public Donante() {
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -53,11 +70,11 @@ public class Donante {
         this.nombre = nombre;
     }
 
-    public Long getDni() {
+    public String getDni() {
         return dni;
     }
 
-    public void setDni(Long dni) {
+    public void setDni(String dni) {
         this.dni = dni;
     }
 
@@ -99,5 +116,46 @@ public class Donante {
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
+    }
+
+    public List<Donacion> getDonaciones() {
+        return donaciones;
+    }
+
+    public void setDonaciones(List<Donacion> donaciones) {
+        this.donaciones = donaciones;
+    }
+
+    public List<Comentario> getComentarios() {
+        return comentarios;
+    }
+
+    public void setComentarios(List<Comentario> comentarios) {
+        this.comentarios = comentarios;
+    }
+
+    public List<CampañaFavorita> getCampañaFavoritas() {
+        return campañaFavoritas;
+    }
+
+    public void setCampañaFavoritas(List<CampañaFavorita> campañaFavoritas) {
+        this.campañaFavoritas = campañaFavoritas;
+    }
+
+    @Override
+    public String toString() {
+        return "Donante{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                ", dni='" + dni + '\'' +
+                ", correo='" + correo + '\'' +
+                ", telefono='" + telefono + '\'' +
+                ", direccion='" + direccion + '\'' +
+                ", fechaNacimiento=" + fechaNacimiento +
+                ", usuario=" + usuario +
+                ", donaciones=" + donaciones +
+                ", comentarios=" + comentarios +
+                ", campañaFavoritas=" + campañaFavoritas +
+                '}';
     }
 }

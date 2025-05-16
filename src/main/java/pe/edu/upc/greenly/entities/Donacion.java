@@ -17,42 +17,36 @@ public class Donacion {
     private String metodoEntrega;
     private LocalDate fechaDonacion;
 
-    /*
-    private Long idDonante;
-    private Long idCampaña;
-    private Long idTipoDonacion;
-    private Long idEstadoDonacion;
-    */
-
     @ManyToOne
     @JoinColumn(name = "donante_id")
     private Donante donante;
 
     @ManyToOne
-    @JoinColumn(name = "campania_id")
-    private Campaña campania;
-
-    @ManyToOne
-    @JoinColumn(name = "estado_donacion_id")
-    private EstadoDonacion estadoDonacion;
+    @JoinColumn(name = "campaña_id")
+    private Campaña campaña;
 
     @ManyToOne
     @JoinColumn(name = "tipo_donacion_id")
     private TipoDonacion tipoDonacion;
 
-    public Donacion() {
-    }
+    @ManyToOne
+    @JoinColumn(name = "estado_donacion_id")
+    private EstadoDonacion estadoDonacion;
 
-    public Donacion(Long id, String name, String descripcion, Double montoDonado, String metodoEntrega, LocalDate fechaDonacion, Donante donante, Campaña campania, TipoDonacion tipoDonacion, EstadoDonacion estadoDonacion) {
+    public Donacion(Long id, String name, String descripcion, Double montoDonado, String metodoEntrega, LocalDate fechaDonacion, Donante donante, Campaña campaña, TipoDonacion tipoDonacion, EstadoDonacion estadoDonacion) {
         this.id = id;
         this.name = name;
         this.descripcion = descripcion;
         this.montoDonado = montoDonado;
+        this.metodoEntrega = metodoEntrega;
         this.fechaDonacion = fechaDonacion;
         this.donante = donante;
-        this.campania = campania;
+        this.campaña = campaña;
         this.tipoDonacion = tipoDonacion;
         this.estadoDonacion = estadoDonacion;
+    }
+
+    public Donacion() {
     }
 
     public Long getId() {
@@ -111,12 +105,20 @@ public class Donacion {
         this.donante = donante;
     }
 
-    public Campaña getCampania() {
-        return campania;
+    public Campaña getCampaña() {
+        return campaña;
     }
 
-    public void setCampania(Campaña campania) {
-        this.campania = campania;
+    public void setCampaña(Campaña campaña) {
+        this.campaña = campaña;
+    }
+
+    public TipoDonacion getTipoDonacion() {
+        return tipoDonacion;
+    }
+
+    public void setTipoDonacion(TipoDonacion tipoDonacion) {
+        this.tipoDonacion = tipoDonacion;
     }
 
     public EstadoDonacion getEstadoDonacion() {
@@ -127,11 +129,19 @@ public class Donacion {
         this.estadoDonacion = estadoDonacion;
     }
 
-    public TipoDonacion getTipoDonacion() {
-        return tipoDonacion;
-    }
-
-    public void setTipoDonacion(TipoDonacion tipoDonacion) {
-        this.tipoDonacion = tipoDonacion;
+    @Override
+    public String toString() {
+        return "Donacion{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", descripcion='" + descripcion + '\'' +
+                ", montoDonado=" + montoDonado +
+                ", metodoEntrega='" + metodoEntrega + '\'' +
+                ", fechaDonacion=" + fechaDonacion +
+                ", donante=" + donante +
+                ", campaña=" + campaña +
+                ", tipoDonacion=" + tipoDonacion +
+                ", estadoDonacion=" + estadoDonacion +
+                '}';
     }
 }

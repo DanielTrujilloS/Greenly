@@ -1,14 +1,10 @@
 package pe.edu.upc.greenly.dtos;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
-import lombok.Data;
-
 import java.time.LocalDate;
 
 public class DonacionDTO {
 
-    private int id;
+    private Long id;
     private String name;
     private String descripcion;
     private Double montoDonado;
@@ -19,7 +15,7 @@ public class DonacionDTO {
     private Long idTipoDonacion;
     private Long idEstadoDonacion;
 
-    public DonacionDTO(int id, String name, String descripcion, Double montoDonado, String metodoEntrega, LocalDate fechaDonacion, Long idDonante, Long idCampaña, Long idTipoDonacion, Long idEstadoDonacion) {
+    public DonacionDTO(Long id, String name, String descripcion, Double montoDonado, String metodoEntrega, LocalDate fechaDonacion, Long idDonante, Long idCampaña, Long idTipoDonacion, Long idEstadoDonacion) {
         this.id = id;
         this.name = name;
         this.descripcion = descripcion;
@@ -32,11 +28,11 @@ public class DonacionDTO {
         this.idEstadoDonacion = idEstadoDonacion;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

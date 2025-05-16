@@ -1,22 +1,23 @@
 package pe.edu.upc.greenly.entities;
 
 import jakarta.persistence.*;
-        import java.util.Date;
+
+import java.time.LocalDate;
 
 @Entity
-@Table(name = "Comentario")
+@Table(name = "Comentarios")
 public class Comentario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idComentario;
+    private Long idComentario;
 
     @Column(columnDefinition = "TEXT", nullable = false)
     private String contenido;
 
-    @Temporal(TemporalType.DATE)
+    //@Temporal(TemporalType.DATE)
     @Column(name = "fecha_comentario")
-    private Date fechaComentario;
+    private LocalDate fechaComentario;
 
     @ManyToOne
     @JoinColumn(name = "posts_id_posts")
@@ -29,7 +30,7 @@ public class Comentario {
     public Comentario() {
     }
 
-    public Comentario(int idComentario, String contenido, Date fechaComentario, Post post, Donante donante) {
+    public Comentario(Long idComentario, String contenido, LocalDate fechaComentario, Post post, Donante donante) {
         this.idComentario = idComentario;
         this.contenido = contenido;
         this.fechaComentario = fechaComentario;
@@ -37,11 +38,11 @@ public class Comentario {
         this.donante = donante;
     }
 
-    public int getIdComentario() {
+    public Long getIdComentario() {
         return idComentario;
     }
 
-    public void setIdComentario(int idComentario) {
+    public void setIdComentario(Long idComentario) {
         this.idComentario = idComentario;
     }
 
@@ -53,11 +54,11 @@ public class Comentario {
         this.contenido = contenido;
     }
 
-    public Date getFechaComentario() {
+    public LocalDate getFechaComentario() {
         return fechaComentario;
     }
 
-    public void setFechaComentario(Date fechaComentario) {
+    public void setFechaComentario(LocalDate fechaComentario) {
         this.fechaComentario = fechaComentario;
     }
 

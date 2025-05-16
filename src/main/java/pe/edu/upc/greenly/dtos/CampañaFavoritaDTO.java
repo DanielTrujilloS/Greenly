@@ -1,31 +1,41 @@
 package pe.edu.upc.greenly.dtos;
 
 public class CampañaFavoritaDTO {
-    private int idCampañaFav;
-    private int campañaId;
-    private int donanteId;
+    private Long idCampañaFav;
+    private Long campañaId;
+    private Long donanteId;
 
-    public int getIdCampañaFav() {
+    public CampañaFavoritaDTO(Long idCampañaFav, Long campañaId, Long donanteId) {
+        this.idCampañaFav = idCampañaFav;
+        this.campañaId = campañaId;
+        this.donanteId = donanteId;
+    }
+
+    public CampañaFavoritaDTO() {
+    }
+
+    public Long getIdCampañaFav() {
         return idCampañaFav;
     }
 
-    public void setIdCampañaFav(int idCampañaFav) {
+    public void setIdCampañaFav(Long idCampañaFav) {
         this.idCampañaFav = idCampañaFav;
     }
 
-    public int getCampañaId() {
+    public Long getCampañaId() {
         return campañaId;
     }
 
-    public void setCampañaId(int campañaId) {
+    public void setCampañaId(Long campañaId) {
         this.campañaId = campañaId;
     }
 
-    public int getDonanteId() {
+    public Long getDonanteId() {
         return donanteId;
     }
 
-    public void setDonanteId(int donanteId) {
+    public void setDonanteId(Long donanteId) {
         this.donanteId = donanteId;
     }
 }
+

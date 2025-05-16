@@ -4,16 +4,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import pe.edu.upc.greenly.dtos.EstadoDonacionDTO;
 import pe.edu.upc.greenly.entities.EstadoDonacion;
-import pe.edu.upc.greenly.entities.TipoDonacion;
 import pe.edu.upc.greenly.service.EstadoDonacionService;
-import pe.edu.upc.greenly.service.TipoDonacionService;
 
 import java.util.List;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/estadoDonaciones")
+@RequestMapping("/Greenly/estadoDonaciones")
 public class EstadoDonacionController {
 
     @Autowired
@@ -39,10 +38,22 @@ public class EstadoDonacionController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @PutMapping("/actualizar/{id}")
+    /*@PutMapping("/actualizar/{id}")
     public ResponseEntity<EstadoDonacion> actualizarTipoDonacion(@PathVariable("id") Long id, @RequestBody EstadoDonacion estadoDonacion) {
         estadoDonacion.setId(id);
         EstadoDonacion editEstadoDonacion = estadoDonacionService.editEstadoDonacion(estadoDonacion);
         return new ResponseEntity<>(editEstadoDonacion,HttpStatus.OK);
+    }*/
+
+    @PutMapping("/modificar/{id}")
+    public ResponseEntity<EstadoDonacionDTO> updateEstadoDonacion(@PathVariable Long id, @RequestBody EstadoDonacionDTO estadoDonacionDTO) {
+        EstadoDonacionDTO updateEstadoDonacion = estadoDonacionService.updateEstadoDonacion(id, estadoDonacionDTO);
+        return ResponseEntity.ok(updateEstadoDonacion);
+    }
+
+    @GetMapping("/obtener/{id}")
+    public ResponseEntity<EstadoDonacionDTO> getEstadoDonacion(@PathVariable Long id) {
+        EstadoDonacionDTO dto = estadoDonacionService.findById(id);
+        return dto != null ? ResponseEntity.ok(dto) : ResponseEntity.notFound().build();
     }
 }
