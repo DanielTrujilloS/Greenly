@@ -1,0 +1,36 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="ong-form">
+    <mat-card>
+      <mat-card-title>Registrar Nueva ONG</mat-card-title>
+      <mat-card-content>
+        <mat-form-field appearance="fill">
+          <mat-label>Nombre</mat-label>
+          <input matInput formControlName="nombre" required>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Descripción</mat-label>
+          <textarea matInput formControlName="descripcion" required></textarea>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Correo</mat-label>
+          <input matInput formControlName="correo" required>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Dirección</mat-label>
+          <input matInput formControlName="direccion" required>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Teléfono</mat-label>
+          <input matInput formControlName="telefono" required>
+        </mat-form-field>
+        <!-- Combo de usuario (opcional) -->
+        
+        <div *ngIf="error" class="error">{{ error }}</div>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-flat-button color="primary" type="submit" [disabled]="form.invalid || loading">
+          Guardar
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </form>
+  

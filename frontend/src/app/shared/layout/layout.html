@@ -1,0 +1,92 @@
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #drawer class="sidenav" mode="side" opened>
+      <mat-toolbar color="primary">Menú</mat-toolbar>
+      <mat-nav-list>
+        <!-- Campañas: visible para DONANTE, ONGADMIN, ADMIN -->
+        <a mat-list-item routerLink="/campañas" routerLinkActive="active"
+           *ngIf="authService.hasAnyRole(['ROLE_DONANTE', 'ROLE_ONGADMIN', 'ROLE_ADMIN'])">
+          Campañas
+        </a>
+      
+        <!-- Donaciones: visible para DONANTE, ONGADMIN, ADMIN -->
+        <a mat-list-item routerLink="/donaciones" routerLinkActive="active"
+           *ngIf="authService.hasAnyRole(['ROLE_DONANTE', 'ROLE_ONGADMIN', 'ROLE_ADMIN'])">
+          Donaciones
+        </a>
+      
+        <!-- Donantes: visible solo para ONGADMIN, ADMIN -->
+        <a mat-list-item routerLink="/donantes" routerLinkActive="active"
+           *ngIf="authService.hasAnyRole(['ROLE_ONGADMIN', 'ROLE_ADMIN'])">
+          Donantes
+        </a>
+      
+        <!-- ONGs: visible para DONANTE, ONGADMIN, ADMIN -->
+        <a mat-list-item routerLink="/ongs" routerLinkActive="active"
+           *ngIf="authService.hasAnyRole(['ROLE_DONANTE', 'ROLE_ONGADMIN', 'ROLE_ADMIN'])">
+          ONGs
+        </a>
+      
+        <!-- Posts: visible para DONANTE, ONGADMIN, ADMIN -->
+        <a mat-list-item routerLink="/posts" routerLinkActive="active"
+           *ngIf="authService.hasAnyRole(['ROLE_DONANTE', 'ROLE_ONGADMIN', 'ROLE_ADMIN'])">
+          Posts
+        </a>
+      
+        <!-- Comentarios: visible para DONANTE, ONGADMIN, ADMIN -->
+        <a mat-list-item routerLink="/comentarios" routerLinkActive="active"
+           *ngIf="authService.hasAnyRole(['ROLE_DONANTE', 'ROLE_ONGADMIN', 'ROLE_ADMIN'])">
+          Comentarios
+        </a>
+      
+        <!-- Catálogos (TipoDonaciones, EstadoDonaciones, Ubicaciones): solo para ONGADMIN, ADMIN -->
+        <a mat-list-item routerLink="/catalogos" routerLinkActive="active"
+           *ngIf="authService.hasAnyRole(['ROLE_ONGADMIN', 'ROLE_ADMIN'])">
+          Catálogos
+        </a>
+      
+        <!-- Usuarios (Administración de usuarios): solo para ADMIN -->
+        <a mat-list-item routerLink="/usuarios" routerLinkActive="active"
+           *ngIf="authService.hasRole('ROLE_ADMIN')">
+          Usuarios
+        </a>
+      
+        <!-- Perfil: para todos los roles (puedes adaptar si solo DONANTE) -->
+       
+      
+        <!-- Cerrar sesión: para todos los usuarios logueados -->
+        <a mat-list-item (click)="logout()" style="color:red" *ngIf="authService.isLoggedIn()">
+          Cerrar sesión
+        </a>
+      </mat-nav-list>      
+    </mat-sidenav>
+  
+    <mat-sidenav-content>
+      <mat-toolbar color="primary">
+        <button mat-icon-button (click)="drawer.toggle()" class="mobile-menu">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <span>Greenly</span>
+      
+        <!-- Toggle Modo Oscuro, justo antes del spacer -->
+        <mat-slide-toggle
+          [checked]="isDarkMode"
+          (change)="toggleDarkMode()"
+          color="accent"
+          class="darkmode-switch"
+          style="margin-left: 24px;"
+        >
+          <mat-icon *ngIf="isDarkMode" inline>dark_mode</mat-icon>
+          <mat-icon *ngIf="!isDarkMode" inline>light_mode</mat-icon>
+        </mat-slide-toggle>
+        <!-- Fin Toggle -->
+      
+        <span class="spacer"></span>
+        <span *ngIf="username">Bienvenido, {{ username }}</span>
+      </mat-toolbar>
+      
+      <div class="content">
+        <router-outlet></router-outlet>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+  

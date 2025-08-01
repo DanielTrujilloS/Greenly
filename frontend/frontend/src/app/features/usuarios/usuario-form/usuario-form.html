@@ -1,0 +1,36 @@
+<mat-card>
+    <mat-card-title>{{ isEdit ? 'Editar' : 'Nuevo' }} Usuario</mat-card-title>
+    <form [formGroup]="form" (ngSubmit)="guardar()">
+      <mat-form-field appearance="fill">
+        <mat-label>Usuario</mat-label>
+        <input matInput formControlName="username" required>
+        <mat-error *ngIf="form.get('username')?.invalid">Requerido</mat-error>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill">
+        <mat-label>Contraseña</mat-label>
+        <input matInput formControlName="password" [type]="isEdit ? 'password' : 'text'" [required]="!isEdit">
+        <mat-error *ngIf="form.get('password')?.invalid && !isEdit">Requerido</mat-error>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill">
+        <mat-label>Rol</mat-label>
+        <input matInput formControlName="authorities" required>
+        <mat-error *ngIf="form.get('authorities')?.invalid">Requerido</mat-error>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill">
+        <mat-label>Activo</mat-label>
+        <mat-select formControlName="enabled" required>
+          <mat-option [value]="true">Sí</mat-option>
+          <mat-option [value]="false">No</mat-option>
+        </mat-select>
+      </mat-form-field>
+  
+      <button mat-flat-button color="primary" type="submit" [disabled]="loading || form.invalid">
+        {{ isEdit ? 'Actualizar' : 'Crear' }}
+      </button>
+      <button mat-button color="warn" routerLink="/usuarios" type="button">Cancelar</button>
+    </form>
+  </mat-card>
+  

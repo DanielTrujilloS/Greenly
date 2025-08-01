@@ -1,0 +1,37 @@
+<mat-card>
+    <mat-card-title>Donantes</mat-card-title>
+    <button mat-flat-button color="primary" routerLink="/donantes/nuevo">
+      Nuevo Donante
+    </button>
+    <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+    <div *ngIf="error" class="error">{{ error }}</div>
+  
+    <table mat-table [dataSource]="donantes" class="mat-elevation-z8" *ngIf="!loading">
+      <ng-container matColumnDef="nombre">
+        <th mat-header-cell *matHeaderCellDef>Nombre</th>
+        <td mat-cell *matCellDef="let d">{{ d.nombre }}</td>
+      </ng-container>
+      <ng-container matColumnDef="correo">
+        <th mat-header-cell *matHeaderCellDef>Correo</th>
+        <td mat-cell *matCellDef="let d">{{ d.correo }}</td>
+      </ng-container>
+      <ng-container matColumnDef="telefono">
+        <th mat-header-cell *matHeaderCellDef>Teléfono</th>
+        <td mat-cell *matCellDef="let d">{{ d.telefono }}</td>
+      </ng-container>
+      <ng-container matColumnDef="acciones">
+        <th mat-header-cell *matHeaderCellDef>Acciones</th>
+        <td mat-cell *matCellDef="let d">
+          <button mat-icon-button color="primary" [routerLink]="['/donantes', d.id, 'editar']">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="eliminar(d.id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="['nombre', 'correo', 'telefono', 'acciones']"></tr>
+      <tr mat-row *matRowDef="let row; columns: ['nombre', 'correo', 'telefono', 'acciones'];"></tr>
+    </table>
+  </mat-card>
+  

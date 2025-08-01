@@ -1,0 +1,42 @@
+<mat-card>
+    <mat-card-title>Usuarios</mat-card-title>
+    <button mat-flat-button color="primary" routerLink="/usuarios/nuevo">
+      Nuevo Usuario
+    </button>
+    <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+    <div *ngIf="error" class="error">{{ error }}</div>
+  
+    <table mat-table [dataSource]="usuarios" class="mat-elevation-z8" *ngIf="!loading">
+  
+      <ng-container matColumnDef="username">
+        <th mat-header-cell *matHeaderCellDef>Usuario</th>
+        <td mat-cell *matCellDef="let u">{{ u.username }}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="authorities">
+        <th mat-header-cell *matHeaderCellDef>Rol</th>
+        <td mat-cell *matCellDef="let u">{{ u.authorities }}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="enabled">
+        <th mat-header-cell *matHeaderCellDef>Activo</th>
+        <td mat-cell *matCellDef="let u">{{ u.enabled ? 'Sí' : 'No' }}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="acciones">
+        <th mat-header-cell *matHeaderCellDef>Acciones</th>
+        <td mat-cell *matCellDef="let u">
+          <button mat-icon-button color="primary" [routerLink]="['/usuarios', u.id, 'editar']">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="eliminar(u.id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="['username', 'authorities', 'enabled', 'acciones']"></tr>
+      <tr mat-row *matRowDef="let row; columns: ['username', 'authorities', 'enabled', 'acciones'];"></tr>
+    </table>
+  </mat-card>
+  

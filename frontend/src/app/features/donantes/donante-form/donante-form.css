@@ -1,0 +1,122 @@
+mat-card {
+    background: rgba(255,255,255,0.87);
+    box-shadow: 0 8px 36px 0 rgba(67,233,123,0.17);
+    border-radius: 22px;
+    backdrop-filter: blur(10px);
+    padding: 36px 38px 24px 38px;
+    max-width: 470px;
+    width: 100%;
+    margin: 38px auto 0 auto;
+    border: 1.7px solid #a8ff78;
+    transition: box-shadow 0.28s, border 0.22s;
+    animation: fadeInDonanteForm 1.1s cubic-bezier(.38,1.15,.7,.96);
+  }
+  
+  @keyframes fadeInDonanteForm {
+    from { opacity: 0; transform: translateY(40px);}
+    to { opacity: 1; transform: translateY(0);}
+  }
+  
+  mat-card-title {
+    color: #15a36a;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    margin-bottom: 1.7rem;
+    text-align: center;
+    font-size: 1.37rem;
+    animation: fadeInDonanteForm 1.1s cubic-bezier(.38,1.15,.7,.96);
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+  }
+  
+  mat-form-field {
+    width: 100%;
+    font-size: 1.06em;
+  }
+  
+  mat-label {
+    color: #23a96e !important;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+  }
+  
+  .mat-form-field-appearance-fill .mat-form-field-flex {
+    background: rgba(255,255,255,0.64);
+    border-radius: 10px 10px 0 0;
+  }
+  
+  .mat-input-element {
+    padding: 0.7em 0.6em;
+    font-size: 1.06em;
+  }
+  
+  .mat-form-field-appearance-fill .mat-form-field-flex:focus-within {
+    box-shadow: 0 0 0 2px #38f9d7b0;
+    border-radius: 12px 12px 0 0;
+    border: 1.3px solid #43e97b;
+    transition: box-shadow 0.22s, border 0.18s;
+  }
+  
+  /* Errores bonitos */
+  mat-error {
+    color: #ff2643 !important;
+    font-size: 0.97em;
+    padding-left: 1px;
+    margin-top: -5px;
+  }
+  
+  /* Botón principal */
+  button[mat-flat-button][color="primary"] {
+    margin-top: 12px;
+    background: linear-gradient(90deg, #43e97b 0%, #38f9d7 100%) !important;
+    color: #fff !important;
+    border-radius: 15px;
+    font-weight: 600;
+    font-size: 1.11em;
+    padding: 0.7em 2em;
+    box-shadow: 0 4px 18px 0 rgba(67,233,123,0.15);
+    letter-spacing: 0.03em;
+    transition: background 0.18s, box-shadow 0.19s, transform 0.14s;
+  }
+  
+  button[mat-flat-button][color="primary"]:hover:not([disabled]) {
+    background: linear-gradient(90deg, #38f9d7 0%, #43e97b 100%) !important;
+    transform: scale(1.04) translateY(-2px);
+    box-shadow: 0 8px 24px 0 rgba(67,233,123,0.22);
+  }
+  
+  button[disabled] {
+    opacity: 0.7;
+    cursor: not-allowed;
+    filter: grayscale(0.3);
+  }
+  
+  /* Botón cancelar */
+  button[mat-button][color="warn"] {
+    margin-top: 10px;
+    margin-left: 12px;
+    color: #fa2356 !important;
+    font-weight: 500;
+    background: transparent !important;
+    border-radius: 15px;
+    transition: background 0.16s, color 0.13s;
+  }
+  
+  button[mat-button][color="warn"]:hover {
+    background: #ffeaea !important;
+    color: #b31323 !important;
+  }
+  
+  /* Responsive */
+  @media (max-width: 600px) {
+    mat-card {
+      padding: 18px 4vw 16px 4vw;
+      min-width: unset;
+      max-width: 98vw;
+    }
+  }
+  

@@ -1,0 +1,50 @@
+<mat-card>
+    <mat-card-title>ONGs</mat-card-title>
+    <button mat-flat-button color="primary" routerLink="/ongs/nuevo">
+      Nueva ONG
+    </button>
+    <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+    <div *ngIf="error" class="error">{{ error }}</div>
+  
+    <table mat-table [dataSource]="ongs" class="mat-elevation-z8" *ngIf="!loading">
+      <ng-container matColumnDef="nombre">
+        <th mat-header-cell *matHeaderCellDef>Nombre</th>
+        <td mat-cell *matCellDef="let o">{{ o.nombre }}</td>
+      </ng-container>
+      <ng-container matColumnDef="descripcion">
+        <th mat-header-cell *matHeaderCellDef>Descripción</th>
+        <td mat-cell *matCellDef="let o">{{ o.descripcion }}</td>
+      </ng-container>
+      <ng-container matColumnDef="correo">
+        <th mat-header-cell *matHeaderCellDef>Correo</th>
+        <td mat-cell *matCellDef="let o">{{ o.correo }}</td>
+      </ng-container>
+      <ng-container matColumnDef="direccion">
+        <th mat-header-cell *matHeaderCellDef>Dirección</th>
+        <td mat-cell *matCellDef="let o">{{ o.direccion }}</td>
+      </ng-container>
+      <ng-container matColumnDef="telefono">
+        <th mat-header-cell *matHeaderCellDef>Teléfono</th>
+        <td mat-cell *matCellDef="let o">{{ o.telefono }}</td>
+      </ng-container>
+      <ng-container matColumnDef="usuario">
+        <th mat-header-cell *matHeaderCellDef>Usuario</th>
+        <td mat-cell *matCellDef="let o">{{ o.usuarioId }}</td>
+      </ng-container>
+      <ng-container matColumnDef="acciones">
+        <th mat-header-cell *matHeaderCellDef>Acciones</th>
+        <td mat-cell *matCellDef="let o">
+          <button mat-icon-button color="primary" [routerLink]="['/ongs', o.id, 'editar']">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="eliminar(o.id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="['nombre', 'descripcion', 'correo', 'direccion', 'telefono', 'usuario', 'acciones']"></tr>
+      <tr mat-row *matRowDef="let row; columns: ['nombre', 'descripcion', 'correo', 'direccion', 'telefono', 'usuario', 'acciones'];"></tr>
+    </table>
+  </mat-card>
+  

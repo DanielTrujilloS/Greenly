@@ -1,0 +1,130 @@
+.register-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent; /* Fondo global ya aplicado */
+}
+
+.register-container form {
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 22px;
+  box-shadow: 0 8px 40px 0 rgba(67, 233, 123, 0.17);
+  padding: 2.6rem 2.4rem 2rem 2.4rem;
+  width: 340px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  backdrop-filter: blur(6px);
+  animation: popIn 0.8s cubic-bezier(0.38, 1.15, 0.7, 0.96);
+}
+
+@keyframes popIn {
+  from {
+    opacity: 0;
+    transform: scale(0.93) translateY(35px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.register-container h2 {
+  margin-bottom: 1.7rem;
+  color: #1abc9c;
+  letter-spacing: 1px;
+  font-weight: 700;
+  text-align: center;
+  font-size: 1.45rem;
+}
+
+.register-container label {
+  font-size: 1rem;
+  color: #23a96e;
+  font-weight: 500;
+  margin-bottom: 0.33em;
+  margin-left: 3px;
+  letter-spacing: 0.04em;
+}
+
+.register-container input[type="text"],
+.register-container input[type="password"] {
+  width: 100%;
+  padding: 0.72em 1em;
+  margin-bottom: 1.3em;
+  border-radius: 9px;
+  border: 1.3px solid #b0f9c7;
+  background: rgba(255, 255, 255, 0.73);
+  font-size: 1em;
+  transition: border 0.18s, box-shadow 0.22s;
+  box-sizing: border-box;
+}
+
+.register-container input:focus {
+  border: 1.7px solid #43e97b;
+  box-shadow: 0 0 0 3px #78ffd661;
+  outline: none;
+}
+
+.register-container .error {
+  color: #ff2e43;
+  font-size: 0.98em;
+  background: #fff0f1;
+  border-radius: 7px;
+  padding: 8px 10px;
+  margin-bottom: 1.1em;
+  text-align: center;
+  border: 1px solid #ff2e4381;
+}
+
+.register-container button[type="submit"] {
+  margin-top: 0.5em;
+  background: linear-gradient(90deg, #43e97b 0%, #38f9d7 100%);
+  color: #fff;
+  border: none;
+  border-radius: 16px;
+  padding: 0.9em 0;
+  font-size: 1.13em;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 18px 0 rgba(56, 249, 215, 0.13);
+  transition: background 0.19s, box-shadow 0.2s, transform 0.13s;
+  letter-spacing: 0.05em;
+}
+
+.register-container button[type="submit"]:hover:not([disabled]) {
+  background: linear-gradient(90deg, #38f9d7 0%, #43e97b 100%);
+  transform: scale(1.03) translateY(-2px);
+  box-shadow: 0 8px 24px 0 rgba(56, 249, 215, 0.22);
+}
+
+.register-container button[disabled] {
+  opacity: 0.72;
+  cursor: not-allowed;
+  filter: grayscale(0.35);
+}
+
+@media (max-width: 500px) {
+  .register-container form {
+    width: 97vw;
+    padding: 1.3rem 0.9rem 1rem 0.9rem;
+  }
+}
+
+.register-link {
+  margin-top: 1rem;
+  text-align: center;
+  font-size: 0.95rem;
+
+  a {
+    color: #1abc9c;
+    text-decoration: underline;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+
+  a:hover {
+    color: #16a085;
+  }
+}

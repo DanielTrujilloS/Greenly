@@ -1,0 +1,15 @@
+<mat-card *ngIf="usuario">
+    <mat-card-title>Detalle de Usuario</mat-card-title>
+    <mat-card-content>
+      <div><strong>ID:</strong> {{ usuario.id }}</div>
+      <div><strong>Usuario:</strong> {{ usuario.username }}</div>
+      <div><strong>Rol:</strong> {{ usuario.authorities }}</div>
+      <div><strong>Activo:</strong> {{ usuario.enabled ? 'Sí' : 'No' }}</div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-flat-button color="primary" [routerLink]="['/usuarios', usuario.id, 'editar']">Editar</button>
+      <button mat-button color="warn" routerLink="/usuarios">Volver</button>
+    </mat-card-actions>
+  </mat-card>
+  <div *ngIf="error" class="error">{{ error }}</div>
+  

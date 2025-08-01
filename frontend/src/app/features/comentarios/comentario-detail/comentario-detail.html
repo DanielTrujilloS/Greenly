@@ -1,0 +1,38 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="comentario-form">
+    <mat-card>
+      <mat-card-title>Registrar Nuevo Comentario</mat-card-title>
+      <mat-card-content>
+        <mat-form-field appearance="fill">
+          <mat-label>Contenido</mat-label>
+          <textarea matInput formControlName="contenido" required></textarea>
+        </mat-form-field>
+  
+        <mat-form-field appearance="fill">
+          <mat-label>Fecha Comentario</mat-label>
+          <input matInput type="date" formControlName="fechaComentario" required>
+        </mat-form-field>
+  
+        <mat-form-field appearance="fill">
+          <mat-label>Post</mat-label>
+          <mat-select formControlName="postId" required>
+            <mat-option *ngFor="let p of posts" [value]="p.id">{{ p.titulo }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Donante</mat-label>
+            <mat-select formControlName="donanteId" required>
+              <mat-option *ngFor="let d of donantes" [value]="d.id">{{ d.nombre }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+    
+          <div *ngIf="error" class="error">{{ error }}</div>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-flat-button color="primary" type="submit" [disabled]="form.invalid || loading">
+            Guardar
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </form>
+    

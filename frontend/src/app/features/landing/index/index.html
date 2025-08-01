@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Greenly</title>
+    <meta
+      name="description"
+      content="Te conectamos con organizaciones benéficas para apoyar a comunidades afectadas por desastres naturales."
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"
+    />
+    <script
+      src="https://kit.fontawesome.com/9c008fdc7d.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <script
+    src="/src//assets/javascript/finisher-header.es5.min.js"
+    type="text/javascript"
+  ></script>
+
+  <body data-spy="scroll" class="background_animation">
+    <header>
+      <nav class="navbar-container navbar_transparent">
+        <div class="logo-container">
+          <a href="index.html">
+            <img class="logo" src="assets/img/Greenly.png" alt="logo Greenly" />
+          </a>
+        </div>
+        <div class="bars">
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+        </div>
+        <ul class="nav-list">
+          <li class="nav-item">
+            <a href="index.html"><i class="fa-solid fa-house"></i>Inicio</a>
+            <ul class="nav-sublist">
+              <li class="nav-subitem">
+                <a href="index.html#home"
+                  ><i class="fa-solid fa-hand-holding-heart"></i>| Propósito</a
+                >
+              </li>
+              <li class="nav-subitem">
+                <a href="index.html#characteristics"
+                  ><i class="fa-solid fa-seedling"></i>| Servicios</a
+                >
+              </li>
+              <li class="nav-subitem">
+                <a href="index.html#targets"
+                  ><i class="fa-solid fa-users"></i>| Segmentos</a
+                >
+              </li>
+              <li class="nav-subitem">
+                <a href="index.html#testimonials"
+                  ><i class="fa-solid fa-comment-dots"></i>| Testimonios</a
+                >
+              </li>
+              <li class="nav-subitem">
+                <a href="index.html#plans"
+                  ><i class="fa-solid fa-receipt"></i>| Planes</a
+                >
+              </li>
+              <li class="nav-subitem">
+                <a href="index.html#footer"
+                  ><i class="fa-solid fa-copyright"></i>| Footer</a
+                >
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a [routerLink]="['/about']"
+              ><i class="fa-sharp fa-solid fa-people-group"></i>Nosotros</a
+            >
+            <ul class="nav-sublist">
+              <li class="nav-subitem">
+                <a href="about.html#resume"
+                  ><i class="fa-solid fa-circle-info"></i>| Resumen</a
+                >
+              </li>
+              <li class="nav-subitem">
+                <a href="about.html#vac"
+                  ><i class="fa-sharp fa-solid fa-scale-balanced"></i>| Valores
+                  y Cultura</a
+                >
+              </li>
+              <li class="nav-subitem">
+                <a href="about.html#dev"
+                  ><i class="fa-sharp fa-solid fa-people-group"></i>| Equipo de
+                  Desarrollo</a
+                >
+              </li>
+              <li class="nav-subitem">
+                <a href="about.html#footer"
+                  ><i class="fa-solid fa-copyright"></i>| Footer</a
+                >
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a [routerLink]="['/contact']" href="contact.html"
+              ><i class="fa-solid fa-envelope-open-text"></i>Contacto</a
+            >
+            <ul class="nav-sublist">
+              <li class="nav-subitem">
+                <a href="contact.html"
+                  ><i class="fa-sharp fa-solid fa-envelope"></i>| Formulario</a
+                >
+              </li>
+              <li class="nav-subitem">
+                <a href="contact.html#socialmedia"
+                  ><i class="fa-brands fa-slack"></i>| Redes Sociales</a
+                >
+              </li>
+              <li class="nav-subitem">
+                <a href="contact.html#footer"
+                  ><i class="fa-solid fa-copyright"></i>| Footer</a
+                >
+              </li>
+            </ul>
+          </li>
+          <div class="login-register">
+            <a [routerLink]="['/login']" class="button_2">
+              <i class="fa-sharp fa-solid fa-right-to-bracket"></i>Acceder
+            </a>
+            <a [routerLink]="['/register']" class="button_2">
+              <i class="fa-sharp fa-solid fa-user-plus"></i>Registrarse
+            </a>
+          </div>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <div class="navbar_separator"></div>
+
+      <section class="section" id="home">
+        <div class="home-container">
+          <div class="home-info">
+            <h1 class="section__title">
+              ¡Apoya a comunidades afectadas por desastres naturales y sé parte
+              del cambio!
+            </h1>
+            <p class="home-info_desc">
+              En Greenly, conectamos tu generosidad con las organizaciones
+              benéficas que trabajan directamente en la recuperación de
+              comunidades afectadas por desastres naturales. Descubre proyectos
+              transparentes, sigue el impacto de tus donaciones y únete a
+              nuestra misión de construir un futuro más resiliente. Juntos,
+              podemos marcar la diferencia.
+            </p>
+            <div class="home-info_buttons">
+              <button class="register-button">Registrate Ahora</button>
+            </div>
+            <div class="home-info_buttons">
+              <img
+                class="download-img"
+                src="assets/img/gp.png"
+                alt="Descargar en Google Play"
+              />
+              <img
+                class="download-img"
+                src="assets/img/ios.png"
+                alt="Descargar en App Store"
+              />
+            </div>
+          </div>
+        </div>
+        <br /><br />
+        <div class="home-container">
+          <div class="home-info">
+            <img
+              class="home-img"
+              src="assets/img/indexMainImage.png"
+              alt="Imagen principal Greenly"
+            />
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="characteristics">
+        <div class="characteristics-container-1">
+          <div>
+            <h2 class="section__title">Nuestros Servicios</h2>
+            <br />
+            <div class="features-container">
+              <div class="feature">
+                <div class="feature-div">
+                  <img
+                    src="assets/img/ayudasocial1.jpg"
+                    alt="Exploración de Campañas"
+                  />
+                  <h3>Exploración de Campañas</h3>
+                  <p>
+                    Encuentra fácilmente campañas de ayuda verificadas que se
+                    ajusten a tus intereses y posibilidades de donación.
+                  </p>
+                </div>
+              </div>
+              <div class="feature">
+                <div class="feature-div">
+                  <img
+                    src="assets/img/ayudasocial2.jpg"
+                    alt="Gestión de Donaciones"
+                  />
+                  <h3>Gestión de Donaciones</h3>
+                  <p>
+                    Realiza un seguimiento del impacto de tus contribuciones y
+                    gestiona tus donaciones de forma sencilla desde tu perfil.
+                  </p>
+                </div>
+              </div>
+              <div class="feature">
+                <div class="feature-div">
+                  <img
+                    src="assets/img/ayudasocial3.jpg"
+                    alt="Perfiles de ONG"
+                  />
+                  <h3>Perfiles de ONG</h3>
+                  <p>
+                    Conoce a fondo las organizaciones benéficas, sus proyectos,
+                    historial y transparencia antes de decidir apoyar.
+                  </p>
+                </div>
+              </div>
+              <div class="feature">
+                <div class="feature-div">
+                  <img
+                    src="assets/img/ayudasocial4.jpg"
+                    alt="Interacción y Transparencia"
+                  />
+                  <h3>Interacción y Transparencia</h3>
+                  <p>
+                    Comunícate directamente con las ONG y recibe actualizaciones
+                    sobre cómo tu apoyo está generando un cambio real en las
+                    comunidades.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="characteristics-container-2">
+          <div></div>
+        </div>
+      </section>
+
+      <br /><br /><br /><br />
+      <section class="section" id="targets">
+        <div class="targets-containter-0 flex">
+          <h2 class="section__title">Segmentos Objetivos</h2>
+        </div>
+        <div class="grid">
+          <div class="targets-container-1 flex">
+            <div>
+              <h3 class="targets_name">Donantes</h3>
+              <div class="targets_img flex">
+                <img
+                  src="assets/img/PerfilDonantes.jpg"
+                  alt="Persona donando"
+                />
+              </div>
+              <p class="targets_text">
+                ¿Por qué deberías donar a través de Greenly? Como donante,
+                Greenly es tu puente para impactar directamente la vida de
+                quienes más lo necesitan. Nuestra plataforma te conecta con
+                organizaciones benéficas verificadas que trabajan en la primera
+                línea de desastres naturales. Simplificamos el proceso de
+                donación, asegurando que tus contribuciones lleguen de manera
+                segura y transparente. Recibirás actualizaciones sobre el
+                progreso de las campañas que apoyas, lo que te permitirá ver el
+                impacto real de tu generosidad. Con Greenly, no solo donas, sino
+                que te unes a una comunidad comprometida con la resiliencia y la
+                esperanza.
+              </p>
+            </div>
+          </div>
+          <div class="targets-container-2 flex">
+            <div>
+              <h3 class="targets_name">Organizaciones Benéficas</h3>
+              <div class="targets_img flex">
+                <img
+                  src="assets/img/PerfilONG.png"
+                  alt="Organización benéfica"
+                />
+              </div>
+              <p class="targets_text">
+                ¿Por qué elegir Greenly para tu ONG? En Greenly, ayudamos a las
+                organizaciones benéficas a maximizar su alcance y obtener el
+                apoyo que necesitan. Nuestra plataforma te permite publicar tus
+                campañas y conectar con una red global de donantes comprometidos
+                con causas humanitarias. Olvídate de los desafíos de la
+                captación de fondos; con Greenly, optimizas tus esfuerzos al
+                presentar tus proyectos de forma clara y transparente. Ofrecemos
+                herramientas que facilitan la gestión de donaciones, la
+                comunicación con los donantes y la visibilidad de tu trabajo.
+                Recaudar fondos nunca fue tan fácil ni tan efectivo.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <br /><br /><br />
+
+      <section class="section" id="testimonials">
+        <h1 class="section__title">Testimonios de Usuarios</h1>
+        <div class="testimonials-container">
+          <div class="testimonials-item">
+            <div>
+              <div class="testimonials-photos">
+                <img
+                  class="testimonials-photo"
+                  src="assets/img/donante1.jpg"
+                  alt="Perfil de Testimonio 1"
+                />
+              </div>
+              <h2>Luis Gonzales</h2>
+              <i class="bi bi-google-play"></i>
+              <h4>&#64;luchitoGE</h4>
+              <p>
+                "Elegí Greenly porque simplifica todo el proceso de donación y
+                me permite ver el impacto directo de mi ayuda. Me ha permitido
+                apoyar a comunidades que realmente necesitan asistencia, algo
+                que otras plataformas no logran con tanta transparencia. Además,
+                la interfaz es clara y las actualizaciones sobre el estado de
+                las campañas me mantienen informada en todo momento. Es
+                gratificante saber que mis esfuerzos están siendo utilizados por
+                organizaciones serias y confiables. ¡Gracias a Greenly, siento
+                que estoy haciendo una diferencia real!"
+              </p>
+              <div class="estrellas">
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+              </div>
+            </div>
+          </div>
+          <div class="testimonials-item">
+            <div>
+              <div class="testimonials-photos">
+                <img
+                  class="testimonials-photo"
+                  src="assets/img/donante2.jpg"
+                  alt="Perfil de Testimonio 2"
+                />
+              </div>
+              <div class="testimonials-info">
+                <h2>Nicolle Mori</h2>
+                <h4>&#64;nicollemori</h4>
+                <p>
+                  "Lo que realmente me impresiona de Greenly es la
+                  transparencia. No solo puedo elegir a qué proyectos dono, sino
+                  que también recibo informes detallados sobre cómo se utilizan
+                  mis fondos. Ver el impacto directo de mi apoyo, con fotos,
+                  historias y datos, me hace sentir parte de algo grande. Es una
+                  motivación continua para seguir contribuyendo y promover este
+                  método de ayuda entre mis conocidos. ¡Greenly es una
+                  herramienta increíble para la filantropía moderna!"
+                </p>
+                <div class="estrellas">
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonials-item">
+            <div>
+              <div class="testimonials-photos">
+                <img
+                  class="testimonials-photo"
+                  src="assets/img/ongGP.png"
+                  alt="Perfil de Testimonio 4"
+                />
+              </div>
+              <div class="testimonials-info">
+                <h2>GeneraPeru</h2>
+                <h4>&#64;generaPeru</h4>
+                <p>
+                  "Gracias a Greenly, hemos logrado una visibilidad sin
+                  precedentes para nuestras campañas de ayuda. La plataforma nos
+                  ha conectado con donantes generosos y nos ha permitido
+                  optimizar nuestros procesos de recaudación de fondos. La
+                  eficiencia que hemos logrado nos ha permitido llevar ayuda a
+                  más comunidades afectadas por desastres naturales, más
+                  rápidamente y con un impacto mucho mayor. ¡Greenly es un socio
+                  invaluable para nuestra misión!"
+                </p>
+                <div class="estrellas">
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-half"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="section main-plans-container" id="plans">
+        <div>
+          <br /><br />
+          <h2 class="section__title">
+            Escoge el plan que mejor se ajuste a ti.
+          </h2>
+          <p>
+            Elige el plan que mejor se adapte a tus necesidades y descubre cómo
+            nuestra app puede ayudarte a alcanzar tus objetivos propuestos.
+          </p>
+        </div>
+        <section class="plans-container--slider">
+          <article class="plans-container--card">
+            <p class="recomendado">Free</p>
+            <div class="plan-info-container">
+              <h3 class="pland-card--title">Donantes</h3>
+              <p class="pland-card--price"><span>$</span>0</p>
+              <p class="pland-card--saving"></p>
+              <div class="textplan">
+                <p>
+                  <i class="bi bi-check2-square"></i> Acceso completo a todas
+                  las funciones básicas de la app
+                </p>
+                <p>
+                  <i class="bi bi-check2-square"></i> Crea tu Perfil como
+                  donante
+                </p>
+                <p>
+                  <i class="bi bi-check2-square"></i> Exploración de proyectos y
+                  campañas
+                </p>
+                <p>
+                  <i class="bi bi-check2-square"></i> Realización de donaciones
+                  seguras
+                </p>
+                <p>
+                  <i class="bi bi-check2-square"></i> Seguimiento del impacto de
+                  tus donaciones
+                </p>
+                <p>
+                  <i class="bi bi-check2-square"></i> Participación en foros y
+                  comunidad
+                </p>
+                <p>
+                  <i class="bi bi-check2-square"></i> Busca organizaciones
+                  benéficas verificadas
+                </p>
+              </div>
+              <button class="pland-card--ca">Elegir Plan<span></span></button>
+            </div>
+          </article>
+          <article class="plans-container--card">
+            <p class="basico">Free</p>
+            <div class="plan-info-container">
+              <h3 class="pland-card--title">Organización Benéfica</h3>
+              <p class="pland-card--price"><span>$</span>0</p>
+              <p class="pland-card--saving"></p>
+              <div class="textplan">
+                <p>
+                  <i class="bi bi-check2-square"></i> Todos los beneficios del
+                  Plan Gratuito para donantes
+                </p>
+                <p>
+                  <i class="bi bi-check2-square"></i> Crea tu perfil como
+                  Organización Benéfica
+                </p>
+                <p>
+                  <i class="bi bi-check2-square"></i> Publica tus proyectos y
+                  campañas en Greenly
+                </p>
+                <p>
+                  <i class="bi bi-check2-square"></i> Acceso a la red de
+                  donantes de Greenly
+                </p>
+                <p>
+                  <i class="bi bi-check2-square"></i> Soporte prioritario y
+                  atención al cliente dedicada
+                </p>
+              </div>
+              <button class="pland-card--ca">Elegir Plan<span></span></button>
+            </div>
+          </article>
+        </section>
+      </section>
+    </main>
+    <footer class="footer" id="footer">
+      <div class="footer-container">
+        <div class="footer-section">
+          <h4>Lenguaje</h4>
+          <select name="language" class="combobox border_hover">
+            <option value="spanish" selected>Español</option>
+            <option value="english">Inglés</option>
+            <option value="russian">Ruso</option>
+          </select>
+          <br />
+          <h4>Redes Sociales</h4>
+          <div class="footer-social">
+            <ul>
+              <li>
+                <a href="https://facebook.com"
+                  ><i class="bi bi-facebook color_hover"></i
+                ></a>
+              </li>
+              <li>
+                <a href="https://twitter.com"
+                  ><i class="bi bi-twitter color_hover"></i
+                ></a>
+              </li>
+              <li>
+                <a href="https://instagram.com"
+                  ><i class="bi bi-instagram color_hover"></i
+                ></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-section">
+          <div>
+            <a href="#" class="footer-title">
+              <h4 class="color_hover">Inicio</h4>
+            </a>
+            <ul>
+              <li>
+                <a href="index.html#home" class="footer-item color_hover"
+                  >Propósito</a
+                >
+              </li>
+              <li>
+                <a
+                  href="index.html#characteristics"
+                  class="footer-item color_hover"
+                  >Servicios</a
+                >
+              </li>
+              <li>
+                <a href="index.html#targets" class="footer-item color_hover"
+                  >Segmentos</a
+                >
+              </li>
+              <li>
+                <a
+                  href="index.html#testimonials"
+                  class="footer-item color_hover"
+                  >Testimonios</a
+                >
+              </li>
+              <li>
+                <a href="index.html#plans" class="footer-item color_hover"
+                  >Planes</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-section">
+          <div>
+            <a href="#" class="footer-title">
+              <h4 class="color_hover">Nosotros</h4>
+            </a>
+            <ul>
+              <li>
+                <a href="about_us.html#resume" class="footer-item color_hover"
+                  >Resumen</a
+                >
+              </li>
+              <li>
+                <a href="about_us.html#vac" class="footer-item color_hover"
+                  >Valores</a
+                >
+              </li>
+              <li>
+                <a href="about_us.html#dev" class="footer-item color_hover"
+                  >Desarrolladores</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-section">
+          <div>
+            <a href="#" class="footer-title">
+              <h4 class="color_hover">Contacto</h4>
+            </a>
+            <ul>
+              <li>
+                <a
+                  href="contact.html#formcontact"
+                  class="footer-item color_hover"
+                  >Formulario</a
+                >
+              </li>
+              <li>
+                <a
+                  href="contact.html#socialmedia"
+                  class="footer-item color_hover"
+                  >Redes Sociales</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer-copy">
+        <p>&copy; 2025 Greenly. Todos los derechos reservados al Grupo</p>
+      </div>
+    </footer>
+  </body>
+</html>
+
+<script src="/src/assets/javascript/script.js" type="text/javascript"></script>

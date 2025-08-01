@@ -1,0 +1,27 @@
+<mat-card>
+    <mat-card-title>{{ isEdit ? 'Editar' : 'Nueva' }} Ubicación Campaña</mat-card-title>
+    <form [formGroup]="form" (ngSubmit)="guardar()">
+      <mat-form-field appearance="fill">
+        <mat-label>Departamento</mat-label>
+        <input matInput formControlName="departamento" required />
+        <mat-error *ngIf="form.get('departamento')?.invalid">Requerido</mat-error>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill">
+        <mat-label>Distrito</mat-label>
+        <input matInput formControlName="distrito" required />
+        <mat-error *ngIf="form.get('distrito')?.invalid">Requerido</mat-error>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill">
+        <mat-label>Dirección</mat-label>
+        <input matInput formControlName="direccion" required />
+        <mat-error *ngIf="form.get('direccion')?.invalid">Requerido</mat-error>
+      </mat-form-field>
+  
+      <button mat-flat-button color="primary" type="submit" [disabled]="loading || form.invalid">
+        {{ isEdit ? 'Actualizar' : 'Crear' }}
+      </button>
+      <button mat-button color="warn" (click)="cancelar()" type="button">Cancelar</button>
+    </form>
+  </mat-card>

@@ -1,0 +1,16 @@
+<mat-card>
+    <mat-card-title>{{ isEdit ? 'Editar' : 'Nuevo' }} Tipo de Donación</mat-card-title>
+    <form [formGroup]="form" (ngSubmit)="guardar()">
+      <mat-form-field appearance="fill">
+        <mat-label>Nombre</mat-label>
+        <input matInput formControlName="nombre" required />
+        <mat-error *ngIf="form.get('nombre')?.invalid">Requerido</mat-error>
+      </mat-form-field>
+  
+      <button mat-flat-button color="primary" type="submit" [disabled]="loading || form.invalid">
+        {{ isEdit ? 'Actualizar' : 'Crear' }}
+      </button>
+      <button mat-button color="warn" (click)="cancelar()" type="button">Cancelar</button>
+    </form>
+  </mat-card>
+  

@@ -1,0 +1,84 @@
+form {
+    background: rgba(255,255,255,0.83);
+    border-radius: 22px;
+    box-shadow: 0 8px 38px 0 rgba(67,233,123,0.15);
+    backdrop-filter: blur(7px);
+    padding: 32px 34px 20px 34px;
+    max-width: 430px;
+    width: 100%;
+    margin: 34px auto 0 auto;
+    border: 1.5px solid #a8ff78;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    animation: fadeInForm 1s cubic-bezier(.38,1.15,.7,.96);
+  }
+  
+  @keyframes fadeInForm {
+    from { opacity: 0; transform: scale(0.97) translateY(32px);}
+    to { opacity: 1; transform: scale(1) translateY(0);}
+  }
+  
+  mat-form-field {
+    width: 100%;
+    font-size: 1.05em;
+  }
+  
+  mat-label {
+    color: #23a96e !important;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+  }
+  
+  .mat-form-field-appearance-fill .mat-form-field-flex {
+    background: rgba(255,255,255,0.66);
+    border-radius: 10px 10px 0 0;
+  }
+  
+  .mat-input-element {
+    padding: 0.7em 0.6em;
+    font-size: 1.03em;
+  }
+  
+  .mat-form-field-appearance-fill .mat-form-field-flex:focus-within {
+    box-shadow: 0 0 0 2px #38f9d7a9;
+    border-radius: 11px 11px 0 0;
+    border: 1.2px solid #43e97b;
+    transition: box-shadow 0.2s, border 0.17s;
+  }
+  
+  /* Botón principal animado */
+  button[mat-flat-button][color="primary"] {
+    margin-top: 10px;
+    background: linear-gradient(90deg, #43e97b 0%, #38f9d7 100%) !important;
+    color: #fff !important;
+    border-radius: 14px;
+    font-weight: 600;
+    font-size: 1.1em;
+    padding: 0.7em 2em;
+    box-shadow: 0 4px 18px 0 rgba(67,233,123,0.14);
+    letter-spacing: 0.03em;
+    transition: background 0.19s, box-shadow 0.2s, transform 0.13s;
+  }
+  
+  button[mat-flat-button][color="primary"]:hover:not([disabled]) {
+    background: linear-gradient(90deg, #38f9d7 0%, #43e97b 100%) !important;
+    transform: scale(1.04) translateY(-2px);
+    box-shadow: 0 8px 24px 0 rgba(67,233,123,0.22);
+  }
+  
+  button[disabled] {
+    opacity: 0.7;
+    cursor: not-allowed;
+    filter: grayscale(0.3);
+  }
+  
+  /* Responsive */
+  @media (max-width: 600px) {
+    form {
+      padding: 16px 5vw 14px 5vw;
+      min-width: unset;
+      max-width: 97vw;
+    }
+  }
+  

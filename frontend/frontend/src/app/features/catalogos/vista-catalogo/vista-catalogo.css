@@ -1,0 +1,22 @@
+.vista-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 20px;
+    width: 100%;
+}
+
+.estados {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.ubicaciones {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.tipos {
+    grid-column: 1 / span 2;
+    grid-row: 2;
+}

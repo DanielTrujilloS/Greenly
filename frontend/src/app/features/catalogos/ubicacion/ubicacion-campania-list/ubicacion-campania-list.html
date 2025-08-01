@@ -1,0 +1,41 @@
+<mat-card>
+    <mat-card-title>Ubicaciones Campaña</mat-card-title>
+    <button mat-flat-button color="primary" routerLink="/catalogos/vista-catalogo/ubicaciones/nuevo">
+      Nueva Ubicación
+    </button>
+    <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+    <div *ngIf="error" class="error">{{ error }}</div>
+  
+    <table mat-table [dataSource]="ubicaciones" class="mat-elevation-z8" *ngIf="!loading">
+      <ng-container matColumnDef="departamento">
+        <th mat-header-cell *matHeaderCellDef>Departamento</th>
+        <td mat-cell *matCellDef="let u">{{ u.departamento }}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="distrito">
+        <th mat-header-cell *matHeaderCellDef>Distrito</th>
+        <td mat-cell *matCellDef="let u">{{ u.distrito }}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="direccion">
+        <th mat-header-cell *matHeaderCellDef>Dirección</th>
+        <td mat-cell *matCellDef="let u">{{ u.direccion }}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="acciones">
+        <th mat-header-cell *matHeaderCellDef>Acciones</th>
+        <td mat-cell *matCellDef="let u">
+          <button mat-icon-button color="primary" [routerLink]="['/catalogos/vista-catalogo/ubicaciones', u.id, 'editar']">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="eliminar(u.id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="['departamento', 'distrito', 'direccion', 'acciones']"></tr>
+      <tr mat-row *matRowDef="let row; columns: ['departamento', 'distrito', 'direccion', 'acciones'];"></tr>
+    </table>
+  </mat-card>
+  

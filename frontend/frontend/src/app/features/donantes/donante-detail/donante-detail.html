@@ -1,0 +1,15 @@
+<mat-card *ngIf="!loading && donante">
+    <mat-card-title>Detalle Donante</mat-card-title>
+    <mat-card-content>
+      <div><strong>Nombre:</strong> {{ donante.nombre }}</div>
+      <div><strong>DNI:</strong> {{ donante.dni }}</div>
+      <div><strong>Correo:</strong> {{ donante.correo }}</div>
+      <div><strong>Teléfono:</strong> {{ donante.telefono }}</div>
+      <div><strong>Dirección:</strong> {{ donante.direccion }}</div>
+      <div><strong>Fecha Nacimiento:</strong> {{ donante.fechaNacimiento }}</div>
+      <div><strong>Usuario ID:</strong> {{ donante.usuarioId }}</div>
+    </mat-card-content>
+  </mat-card>
+  <div *ngIf="loading">Cargando...</div>
+  <div *ngIf="error">{{ error }}</div>
+  

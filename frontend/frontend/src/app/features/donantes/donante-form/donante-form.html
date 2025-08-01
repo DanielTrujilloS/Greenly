@@ -1,0 +1,39 @@
+<mat-card>
+    <mat-card-title>{{ isEdit ? 'Editar' : 'Nuevo' }} Donante</mat-card-title>
+    <form [formGroup]="form" (ngSubmit)="guardar()">
+      <mat-form-field appearance="fill">
+        <mat-label>Nombre</mat-label>
+        <input matInput formControlName="nombre" required>
+        <mat-error *ngIf="form.get('nombre')?.invalid">Requerido</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>DNI</mat-label>
+        <input matInput formControlName="dni" required>
+        <mat-error *ngIf="form.get('dni')?.invalid">Requerido</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Correo</mat-label>
+        <input matInput formControlName="correo" required type="email">
+        <mat-error *ngIf="form.get('correo')?.invalid">Correo inválido</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Teléfono</mat-label>
+        <input matInput formControlName="telefono" required>
+        <mat-error *ngIf="form.get('telefono')?.invalid">Requerido</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Dirección</mat-label>
+        <input matInput formControlName="direccion">
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Fecha de Nacimiento</mat-label>
+        <input matInput type="date" formControlName="fechaNacimiento" required>
+      </mat-form-field>
+      <!-- usuarioId puede ser oculto, autogenerado o con select -->
+      <button mat-flat-button color="primary" type="submit" [disabled]="loading || form.invalid">
+        {{ isEdit ? 'Actualizar' : 'Crear' }}
+      </button>
+      <button mat-button color="warn" routerLink="/donantes" type="button">Cancelar</button>
+    </form>
+  </mat-card>
+  
