@@ -6,7 +6,7 @@ import pe.edu.upc.greenly.dtos.DonacionDTO;
 import pe.edu.upc.greenly.dtos.TotalDonacionesPorCampañaDTO;
 import pe.edu.upc.greenly.entities.*;
 import pe.edu.upc.greenly.repositories.*;
-import pe.edu.upc.greenly.service.DonacionService;
+import pe.edu.upc.greenly.services.DonacionService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,18 +49,48 @@ public class DonacionServiceImpl implements DonacionService {
         if (donacionDTO.getMetodoEntrega() == null || donacionDTO.getMetodoEntrega().isEmpty()) {
             return null;
         }
-        Donante donante = donanteRepository.findById(donacionDTO.getIdDonante())
-                .orElseThrow(() -> new RuntimeException("Donante no encontrado"));
+        Donante donante;
+        if (donacionDTO.getIdDonante() != null) {
+            donante = donanteRepository.findById(donacionDTO.getIdDonante())
+                    .orElseThrow(() -> new RuntimeException("Donante no encontrado"));
+        } else {
+            List<Donante> donantes = donanteRepository.findAll();
+            if (donantes.isEmpty()) throw new RuntimeException("No hay donantes en la base de datos");
+            donante = donantes.get((int)(Math.random() * donantes.size()));
+        }
 
-        Campaña campaña = campañaRepository.findById(donacionDTO.getIdCampaña())
-                .orElseThrow(() -> new RuntimeException("Campaña no encontrada"));
+        // Si la campaña es null, seleccionar una random
+        Campaña campaña;
+        if (donacionDTO.getIdCampaña() != null) {
+            campaña = campañaRepository.findById(donacionDTO.getIdCampaña())
+                    .orElseThrow(() -> new RuntimeException("Campaña no encontrada"));
+        } else {
+            List<Campaña> campañas = campañaRepository.findAll();
+            if (campañas.isEmpty()) throw new RuntimeException("No hay campañas en la base de datos");
+            campaña = campañas.get((int)(Math.random() * campañas.size()));
+        }
 
-        TipoDonacion tipoDonacion = tipoDonacionRepository.findById(donacionDTO.getIdTipoDonacion())
-                .orElseThrow(() -> new RuntimeException("Tipo de donación no encontrado"));
+        // Si tipoDonacion es null, seleccionar uno random
+        TipoDonacion tipoDonacion;
+        if (donacionDTO.getIdTipoDonacion() != null) {
+            tipoDonacion = tipoDonacionRepository.findById(donacionDTO.getIdTipoDonacion())
+                    .orElseThrow(() -> new RuntimeException("Tipo de donación no encontrado"));
+        } else {
+            List<TipoDonacion> tipos = tipoDonacionRepository.findAll();
+            if (tipos.isEmpty()) throw new RuntimeException("No hay tipos de donación en la base de datos");
+            tipoDonacion = tipos.get((int)(Math.random() * tipos.size()));
+        }
 
-        EstadoDonacion estadoDonacion = estadoDonacionRepository.findById(donacionDTO.getIdEstadoDonacion())
-                .orElseThrow(() -> new RuntimeException("Estado de donación no encontrado"));
-
+        // Si estadoDonacion es null, seleccionar uno random
+        EstadoDonacion estadoDonacion;
+        if (donacionDTO.getIdEstadoDonacion() != null) {
+            estadoDonacion = estadoDonacionRepository.findById(donacionDTO.getIdEstadoDonacion())
+                    .orElseThrow(() -> new RuntimeException("Estado de donación no encontrado"));
+        } else {
+            List<EstadoDonacion> estados = estadoDonacionRepository.findAll();
+            if (estados.isEmpty()) throw new RuntimeException("No hay estados de donación en la base de datos");
+            estadoDonacion = estados.get((int)(Math.random() * estados.size()));
+        }
         /*
         Donante donante = donanteRepository.findById(donacionDTO.getIdDonante());
         Campaña campaña = campañaRepository.findById(donacionDTO.getIdCampaña());
@@ -121,22 +151,6 @@ public class DonacionServiceImpl implements DonacionService {
             e.printStackTrace();
         }*/
     }
-    /*@Override
-    public void deleteDonacion(Long id) {
-        Optional<Donacion> donacion = donacionRepository.findById(id);
-        if (donacion.isPresent()) {
-            donacionRepository.delete(donacion.get());
-            entityManager.flush(); // 👈 fuerza la sincronización con la BD
-            System.out.println(">>> Eliminado y flush ejecutado");
-        } else {
-            System.out.println(">>> No se encontró la donación");
-        }
-    }*/
-
-    /*@Override
-    public DonacionDTO findById(Long id) {
-        return donacionRepository.findById(id).orElse(null);
-    }*/
 
     @Override
     public DonacionDTO findById(Long id) {
@@ -203,76 +217,69 @@ public class DonacionServiceImpl implements DonacionService {
     }*/
 
     @Override
-    public DonacionDTO updateDonacion(Long id, DonacionDTO dto) {
-        Donacion donacionExistente = donacionRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Donacion no encontrada con ID: " + id));
-
-        // Actualizar nombre si no es null
-        if (dto.getName() != null) {
-            donacionExistente.setName(dto.getName());
+    public DonacionDTO updateDonacion(Long id, DonacionDTO donacionDTO) {
+        if (donacionDTO.getName() == null || donacionDTO.getName().isEmpty()) {
+            throw new RuntimeException("El nombre de la donación no puede estar vacio");
+        }
+        if (donacionDTO.getDescripcion() == null || donacionDTO.getDescripcion().isEmpty()) {
+            throw new RuntimeException("La descripción de la donación no puede estar vacia");
+        }
+        if (donacionDTO.getMontoDonado() == null || donacionDTO.getMontoDonado() < 0.0) {
+            throw new RuntimeException("El monto donado de la donación no puede ser menor a 0");
+        }
+        if (donacionDTO.getMetodoEntrega() == null || donacionDTO.getMetodoEntrega().isEmpty()) {
+            throw new RuntimeException("El método de entrega no puede estar vacio");
         }
 
-        // Actualizar descripción si no es null
-        if (dto.getDescripcion() != null) {
-            donacionExistente.setDescripcion(dto.getDescripcion());
-        }
+        // --- Selección automática si viene null ---
+        Donante donante = (donacionDTO.getIdDonante() != null) ?
+                donanteRepository.findById(donacionDTO.getIdDonante())
+                        .orElseThrow(() -> new RuntimeException("Donante no encontrado")) :
+                donanteRepository.findAll().stream().findAny()
+                        .orElseThrow(() -> new RuntimeException("No existen donantes"));
 
-        // Actualizar MontoDonado si no es null
-        if (dto.getMontoDonado() != null) {
-            donacionExistente.setMontoDonado(dto.getMontoDonado());
-        }
+        Campaña campaña = (donacionDTO.getIdCampaña() != null) ?
+                campañaRepository.findById(donacionDTO.getIdCampaña())
+                        .orElseThrow(() -> new RuntimeException("Campaña no encontrada")) :
+                campañaRepository.findAll().stream().findAny()
+                        .orElseThrow(() -> new RuntimeException("No existen campañas"));
 
-        // Actualizar MetodoEntraga si no es null
-        if (dto.getMetodoEntrega() != null) {
-            donacionExistente.setMetodoEntrega(dto.getMetodoEntrega());
-        }
+        TipoDonacion tipoDonacion = (donacionDTO.getIdTipoDonacion() != null) ?
+                tipoDonacionRepository.findById(donacionDTO.getIdTipoDonacion())
+                        .orElseThrow(() -> new RuntimeException("Tipo de donación no encontrado")) :
+                tipoDonacionRepository.findAll().stream().findAny()
+                        .orElseThrow(() -> new RuntimeException("No existen tipos de donación"));
 
-        // Actualizar FechaDonacion si no es null
-        if (dto.getFechaDonacion() != null) {
-            donacionExistente.setFechaDonacion(dto.getFechaDonacion());
-        }
+        EstadoDonacion estadoDonacion = (donacionDTO.getIdEstadoDonacion() != null) ?
+                estadoDonacionRepository.findById(donacionDTO.getIdEstadoDonacion())
+                        .orElseThrow(() -> new RuntimeException("Estado de donación no encontrado")) :
+                estadoDonacionRepository.findAll().stream().findAny()
+                        .orElseThrow(() -> new RuntimeException("No existen estados de donación"));
 
-        // Actualizar Donante si ongId no es null
-        if (dto.getIdDonante() != null) {
-            Donante donante = donanteRepository.findById(dto.getIdDonante())
-                    .orElseThrow(() -> new RuntimeException("Donante no encontrada con ID: " + dto.getIdDonante()));
-            donacionExistente.setDonante(donante);
-        }
+        Donacion donacion = new Donacion();
+        donacion.setName(donacionDTO.getName());
+        donacion.setDescripcion(donacionDTO.getDescripcion());
+        donacion.setMontoDonado(donacionDTO.getMontoDonado());
+        donacion.setMetodoEntrega(donacionDTO.getMetodoEntrega());
+        donacion.setFechaDonacion(donacionDTO.getFechaDonacion());
+        donacion.setDonante(donante);
+        donacion.setCampaña(campaña);
+        donacion.setTipoDonacion(tipoDonacion);
+        donacion.setEstadoDonacion(estadoDonacion);
 
-        // Actualizar Campaña si CampañaId no es null
-        if (dto.getIdCampaña() != null) {
-            Campaña campaña = campañaRepository.findById(dto.getIdCampaña())
-                    .orElseThrow(() -> new RuntimeException("Campaña no encontrada con ID: " + dto.getIdCampaña()));
-            donacionExistente.setCampaña(campaña);
-        }
-
-        // Actualizar TipoDonacion si TipoDonacionId no es null
-        if (dto.getIdTipoDonacion() != null) {
-            TipoDonacion tipoDonacion = tipoDonacionRepository.findById(dto.getIdTipoDonacion())
-                    .orElseThrow(() -> new RuntimeException("TipoDonacion no encontrada con ID: " + dto.getIdTipoDonacion()));
-            donacionExistente.setTipoDonacion(tipoDonacion);
-        }
-
-        // Actualizar EstadoDonacion si EstadoDonacionId no es null
-        if (dto.getIdEstadoDonacion() != null) {
-            EstadoDonacion estadoDonacion = estadoDonacionRepository.findById(dto.getIdEstadoDonacion())
-                    .orElseThrow(() -> new RuntimeException("Campaña no encontrada con ID: " + dto.getIdEstadoDonacion()));
-            donacionExistente.setEstadoDonacion(estadoDonacion);
-        }
-
-        Donacion updated = donacionRepository.save(donacionExistente);
+        Donacion savedDonacion = donacionRepository.save(donacion);
 
         return new DonacionDTO(
-                updated.getId(),
-                updated.getName(),
-                updated.getDescripcion(),
-                updated.getMontoDonado(),
-                updated.getMetodoEntrega(),
-                updated.getFechaDonacion(),
-                updated.getDonante() != null ? updated.getDonante().getId() : null,
-                updated.getCampaña() != null ? updated.getCampaña().getId() : null,
-                updated.getTipoDonacion() != null ? updated.getTipoDonacion().getId() : null,
-                updated.getEstadoDonacion() != null ? updated.getEstadoDonacion().getId() : null
+                savedDonacion.getId(),
+                savedDonacion.getName(),
+                savedDonacion.getDescripcion(),
+                savedDonacion.getMontoDonado(),
+                savedDonacion.getMetodoEntrega(),
+                savedDonacion.getFechaDonacion(),
+                savedDonacion.getDonante().getId(),
+                savedDonacion.getCampaña().getId(),
+                savedDonacion.getTipoDonacion().getId(),
+                savedDonacion.getEstadoDonacion().getId()
         );
     }
 

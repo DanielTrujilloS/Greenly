@@ -1,9 +1,12 @@
 package pe.edu.upc.greenly.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 @Entity
 @Table(name = "Post")
@@ -18,6 +21,14 @@ public class Post {
 
     @Lob
     private byte[] imagen;
+
+    @JsonIgnore
+    @OneToMany(
+            mappedBy = "post",
+            cascade = CascadeType.REMOVE,
+            orphanRemoval = true
+    )
+    private List<Comentario> comentarios = new ArrayList<>();
 
     //@Temporal(TemporalType.DATE)
     @Column(name = "fecha_publicacion")

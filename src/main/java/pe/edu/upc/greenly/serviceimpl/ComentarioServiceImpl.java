@@ -10,7 +10,7 @@ import pe.edu.upc.greenly.entities.Post;
 import pe.edu.upc.greenly.repositories.ComentarioRepository;
 import pe.edu.upc.greenly.repositories.DonanteRepository;
 import pe.edu.upc.greenly.repositories.PostRepository;
-import pe.edu.upc.greenly.service.ComentarioService;
+import pe.edu.upc.greenly.services.ComentarioService;
 
 import java.util.List;
 import java.util.stream.Collectors;

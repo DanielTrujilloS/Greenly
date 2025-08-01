@@ -1,15 +1,19 @@
 package pe.edu.upc.greenly.serviceimpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import pe.edu.upc.greenly.dtos.OngDTO;
+import pe.edu.upc.greenly.entities.Authority;
 import pe.edu.upc.greenly.entities.Ong;
 import pe.edu.upc.greenly.entities.Usuario;
 import pe.edu.upc.greenly.repositories.OngRepository;
 import pe.edu.upc.greenly.repositories.UsuarioRepository;
-import pe.edu.upc.greenly.service.OngService;
+import pe.edu.upc.greenly.services.OngService;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 @Service
 public class OngServiceImpl implements OngService {
@@ -18,19 +22,36 @@ public class OngServiceImpl implements OngService {
 
     @Autowired
     private UsuarioRepository usuarioRepository;
+    @Autowired
+    private AuthorityServiceImpl authorityServiceImpl;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Override
     public OngDTO addOng(OngDTO ongDTO) {
-        Usuario usuario = usuarioRepository.findById(ongDTO.getUsuarioId())
-                .orElseThrow(() -> new RuntimeException("Usuario no encontrado con ID: " + ongDTO.getUsuarioId()));
+        // 1) Buscar rol existente
+        Authority rolOng = authorityServiceImpl.findByName("ROLE_ONGADMIN");
+        if (rolOng == null) {
+            throw new RuntimeException("No existe el rol ROLE_ONGADMIN");
+        }
 
+        // 2) Generar usuario aleatorio
+        Usuario usuario = new Usuario();
+        usuario.setUsername("ong_user_" + UUID.randomUUID().toString().substring(0, 8));
+        usuario.setPassword(passwordEncoder.encode("123456"));
+        usuario.setEnabled(true);
+        usuario.setAuthorities(Collections.singletonList(rolOng));
+
+        Usuario savedUsuario = usuarioRepository.save(usuario);
+
+        // 3) Crear la ONG con usuario generado
         Ong ong = new Ong();
         ong.setNombre(ongDTO.getNombre());
         ong.setDescripcion(ongDTO.getDescripcion());
         ong.setCorreo(ongDTO.getCorreo());
         ong.setDireccion(ongDTO.getDireccion());
         ong.setTelefono(ongDTO.getTelefono());
-        ong.setUsuario(usuario);
+        ong.setUsuario(savedUsuario);
 
         Ong savedOng = ongRepository.save(ong);
 
@@ -41,9 +62,11 @@ public class OngServiceImpl implements OngService {
                 savedOng.getCorreo(),
                 savedOng.getDireccion(),
                 savedOng.getTelefono(),
-                savedOng.getUsuario().getId()
+                savedOng.getUsuario() != null ? savedOng.getUsuario().getId() : null
         );
     }
+
+
 
     @Override
     public void deleteOng(Long id) {

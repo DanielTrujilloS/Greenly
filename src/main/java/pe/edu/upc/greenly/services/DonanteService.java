@@ -1,4 +1,4 @@
-package pe.edu.upc.greenly.service;
+package pe.edu.upc.greenly.services;
 
 import pe.edu.upc.greenly.dtos.DonanteDTO;
 import pe.edu.upc.greenly.entities.Donante;

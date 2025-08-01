@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import pe.edu.upc.greenly.dtos.Ubicacion_CampañaDTO;
 import pe.edu.upc.greenly.entities.Ubicacion_Campaña;
 import pe.edu.upc.greenly.repositories.Ubicacion_CampañaRepository;
-import pe.edu.upc.greenly.service.Ubicacion_CampañaService;
+import pe.edu.upc.greenly.services.Ubicacion_CampañaService;
 
 import java.util.List;
 import java.util.stream.Collectors;

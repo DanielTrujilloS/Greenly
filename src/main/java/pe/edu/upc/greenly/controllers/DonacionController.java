@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.greenly.dtos.DonacionDTO;
 import pe.edu.upc.greenly.dtos.TotalDonacionesPorCampañaDTO;
-import pe.edu.upc.greenly.service.DonacionService;
+import pe.edu.upc.greenly.services.DonacionService;
 
 import java.util.List;
 

@@ -6,10 +6,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.greenly.dtos.DonanteDTO;
 import pe.edu.upc.greenly.entities.Donante;
-import pe.edu.upc.greenly.service.DonanteService;
+import pe.edu.upc.greenly.services.DonanteService;
 
 import java.util.List;
-
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/Greenly/donantes")
 

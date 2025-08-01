@@ -7,7 +7,7 @@ import pe.edu.upc.greenly.entities.Campaña;
 import pe.edu.upc.greenly.entities.Post;
 import pe.edu.upc.greenly.repositories.CampañaRepository;
 import pe.edu.upc.greenly.repositories.PostRepository;
-import pe.edu.upc.greenly.service.PostService;
+import pe.edu.upc.greenly.services.PostService;
 
 import java.util.List;
 import java.util.stream.Collectors;

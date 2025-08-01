@@ -6,11 +6,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.greenly.dtos.CampañaDTO;
 import pe.edu.upc.greenly.entities.Campaña;
-import pe.edu.upc.greenly.service.CampañaService;
+import pe.edu.upc.greenly.services.CampañaService;
 
 import java.time.LocalDate;
 import java.util.List;
-
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/Greenly/campañas")
 public class CampañaController {

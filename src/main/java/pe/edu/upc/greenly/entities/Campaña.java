@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -20,16 +21,26 @@ public class Campaña {
     @JoinColumn(name = "ong_id", referencedColumnName = "id")
     private Ong ong;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.REMOVE, orphanRemoval = true)
     @JoinColumn(name = "ubicacion_Campaña_id", referencedColumnName = "id")
     private Ubicacion_Campaña ubicacion_Campaña;
-    @JsonIgnore
-    @OneToMany(mappedBy = "campaña", fetch = FetchType.EAGER)
-    private List<Donacion> donacion;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "campaña", fetch =FetchType.EAGER)
-    private List<Post> post;
+    @OneToMany(
+            mappedBy = "campaña",
+            cascade = CascadeType.REMOVE, // Solo REMOVE, no PERSIST ni MERGE
+            orphanRemoval = true
+    )
+    private List<Donacion> donacion = new ArrayList<>();
+
+    @JsonIgnore
+    @OneToMany(
+            mappedBy = "campaña",
+            cascade = CascadeType.REMOVE, // Solo REMOVE, no PERSIST ni MERGE
+            orphanRemoval = true
+    )
+    private List<Post> post = new ArrayList<>();
+
 
 
     public Campaña(Long id, String titulo, String descripcion, LocalDate fechaInicio, LocalDate fechaFin, Ong ong, Ubicacion_Campaña ubicacion_Campaña, List<Donacion> donacion, List<Post> post) {

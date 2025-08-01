@@ -25,17 +25,31 @@ public class Donante {
     @JoinColumn(name = "usuario_id", referencedColumnName = "id")
     private Usuario usuario;
     @JsonIgnore
-    @OneToMany (mappedBy = "donante",fetch = FetchType.EAGER)
+    @OneToMany(
+            mappedBy = "donante",
+            fetch = FetchType.EAGER,
+            cascade = CascadeType.ALL,         // <<--- AGREGAR
+            orphanRemoval = true               // <<--- AGREGAR
+    )
     private List<Donacion> donaciones;
 
     @JsonIgnore
-    @OneToMany (mappedBy = "donante",fetch = FetchType.EAGER)
+    @OneToMany(
+            mappedBy = "donante",
+            fetch = FetchType.EAGER,
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
     private List<Comentario> comentarios;
 
     @JsonIgnore
-    @OneToMany (mappedBy = "donante",fetch = FetchType.EAGER)
+    @OneToMany(
+            mappedBy = "donante",
+            fetch = FetchType.EAGER,
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
     private List<CampañaFavorita> campañaFavoritas;
-
 
     public Donante(Long id, String nombre, String dni, String correo, String telefono, String direccion, LocalDate fechaNacimiento, Usuario usuario, List<Donacion> donaciones, List<Comentario> comentarios, List<CampañaFavorita> campañaFavoritas) {
         this.id = id;

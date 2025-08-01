@@ -5,17 +5,18 @@ public class UsuarioDTO {
     private Long id;
     private String username;
     private String password;
-    private Boolean enable;
+    private String authorities;
+    private Boolean enabled; // nuevo campo
 
-    public UsuarioDTO(Long id, String username, String password, Boolean enable) {
+    public UsuarioDTO(Long id, String username, String password, String authorities, Boolean enabled) {
         this.id = id;
         this.username = username;
         this.password = password;
-        this.enable = enable;
+        this.authorities = authorities;
+        this.enabled = enabled;
     }
 
-    public UsuarioDTO() {
-    }
+    public UsuarioDTO() {}
 
     public Long getId() {
         return id;
@@ -41,12 +42,20 @@ public class UsuarioDTO {
         this.password = password;
     }
 
-    public Boolean isEnable() {
-        return enable;
+    public String getAuthorities() {
+        return authorities;
     }
 
-    public void setEnable(Boolean enable) {
-        this.enable = enable;
+    public void setAuthorities(String authorities) {
+        this.authorities = authorities;
+    }
+
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
     }
 
     @Override
@@ -55,7 +64,7 @@ public class UsuarioDTO {
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
-                ", enable=" + enable +
+                ", enabled=" + enabled +
                 '}';
     }
 }

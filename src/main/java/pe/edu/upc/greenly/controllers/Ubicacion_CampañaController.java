@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.greenly.dtos.Ubicacion_CampañaDTO;
-import pe.edu.upc.greenly.service.Ubicacion_CampañaService;
+import pe.edu.upc.greenly.services.Ubicacion_CampañaService;
 
 import java.util.List;
 

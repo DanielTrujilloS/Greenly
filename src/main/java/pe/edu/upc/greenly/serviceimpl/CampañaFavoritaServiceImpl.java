@@ -9,7 +9,7 @@ import pe.edu.upc.greenly.entities.Donante;
 import pe.edu.upc.greenly.repositories.CampañaFavoritaRepository;
 import pe.edu.upc.greenly.repositories.CampañaRepository;
 import pe.edu.upc.greenly.repositories.DonanteRepository;
-import pe.edu.upc.greenly.service.CampañaFavoritaService;
+import pe.edu.upc.greenly.services.CampañaFavoritaService;
 
 import java.util.List;
 import java.util.stream.Collectors;

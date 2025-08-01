@@ -4,10 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.greenly.dtos.OngDTO;
-import pe.edu.upc.greenly.service.OngService;
+import pe.edu.upc.greenly.services.OngService;
 
 import java.util.List;
-
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/Greenly/ongs")
 // http://localhost:8080/Greenly/ongs/...

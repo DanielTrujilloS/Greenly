@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import pe.edu.upc.greenly.dtos.EstadoDonacionDTO;
 import pe.edu.upc.greenly.entities.EstadoDonacion;
 import pe.edu.upc.greenly.repositories.EstadoDonacionRepository;
-import pe.edu.upc.greenly.service.EstadoDonacionService;
+import pe.edu.upc.greenly.services.EstadoDonacionService;
 
 import java.util.List;
 

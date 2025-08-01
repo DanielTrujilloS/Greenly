@@ -4,4 +4,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import pe.edu.upc.greenly.entities.Usuario;
 
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
+    public Usuario findByUsername(String username);
 }

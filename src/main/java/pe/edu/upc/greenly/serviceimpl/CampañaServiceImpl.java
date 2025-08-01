@@ -10,7 +10,7 @@ import pe.edu.upc.greenly.entities.Ubicacion_Campaña;
 import pe.edu.upc.greenly.repositories.CampañaRepository;
 import pe.edu.upc.greenly.repositories.OngRepository;
 import pe.edu.upc.greenly.repositories.Ubicacion_CampañaRepository;
-import pe.edu.upc.greenly.service.CampañaService;
+import pe.edu.upc.greenly.services.CampañaService;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -29,11 +29,25 @@ public class CampañaServiceImpl implements CampañaService {
 
     @Override
     public CampañaDTO addCampaña(CampañaDTO dto) {
-        Ong ong = ongRepository.findById(dto.getOngId())
-                .orElseThrow(() -> new RuntimeException("ONG no encontrada con ID: " + dto.getOngId()));
+        Ong ong;
+        if (dto.getOngId() == null) {
+            List<Ong> allOngs = ongRepository.findAll();
+            if (allOngs.isEmpty()) throw new RuntimeException("No hay ONGs en el sistema");
+            ong = allOngs.get((int) (Math.random() * allOngs.size()));
+        } else {
+            ong = ongRepository.findById(dto.getOngId())
+                    .orElseThrow(() -> new RuntimeException("ONG no encontrada con ID: " + dto.getOngId()));
+        }
 
-        Ubicacion_Campaña ubicacion = ubicacionCampañaRepository.findById(dto.getUbicacion_CampañaId())
-                .orElseThrow(() -> new RuntimeException("Ubicación no encontrada con ID: " + dto.getUbicacion_CampañaId()));
+        Ubicacion_Campaña ubicacion;
+        if (dto.getUbicacion_CampañaId() == null) {
+            List<Ubicacion_Campaña> allUbic = ubicacionCampañaRepository.findAll();
+            if (allUbic.isEmpty()) throw new RuntimeException("No hay ubicaciones en el sistema");
+            ubicacion = allUbic.get((int) (Math.random() * allUbic.size()));
+        } else {
+            ubicacion = ubicacionCampañaRepository.findById(dto.getUbicacion_CampañaId())
+                    .orElseThrow(() -> new RuntimeException("Ubicación no encontrada con ID: " + dto.getUbicacion_CampañaId()));
+        }
 
         Campaña campaña = new Campaña();
         campaña.setTitulo(dto.getTitulo());
@@ -55,6 +69,7 @@ public class CampañaServiceImpl implements CampañaService {
                 saved.getUbicacion_Campaña().getId()
         );
     }
+
 
     @Override
     public void deleteCampaña(Long id) {

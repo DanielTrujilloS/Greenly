@@ -7,7 +7,7 @@ import pe.edu.upc.greenly.entities.Donante;
 import pe.edu.upc.greenly.entities.Usuario;
 import pe.edu.upc.greenly.repositories.DonanteRepository;
 import pe.edu.upc.greenly.repositories.UsuarioRepository;
-import pe.edu.upc.greenly.service.DonanteService;
+import pe.edu.upc.greenly.services.DonanteService;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -22,8 +22,21 @@ public class DonanteServiceImpl implements DonanteService {
 
     @Override
     public DonanteDTO addDonante(DonanteDTO donanteDTO) {
-        Usuario usuario = usuarioRepository.findById(donanteDTO.getUsuarioId())
-                .orElseThrow(() -> new RuntimeException("Usuario no encontrado con ID: " + donanteDTO.getUsuarioId()));
+        Usuario usuario;
+
+        // Si NO se envía usuarioId, buscar uno random
+        if (donanteDTO.getUsuarioId() == null) {
+            List<Usuario> usuarios = usuarioRepository.findAll();
+            if (usuarios.isEmpty()) {
+                throw new RuntimeException("No hay usuarios registrados para asociar al donante");
+            }
+            // Generar random
+            int randomIdx = (int) (Math.random() * usuarios.size());
+            usuario = usuarios.get(randomIdx);
+        } else {
+            usuario = usuarioRepository.findById(donanteDTO.getUsuarioId())
+                    .orElseThrow(() -> new RuntimeException("Usuario no encontrado con ID: " + donanteDTO.getUsuarioId()));
+        }
 
         Donante donante = new Donante();
         donante.setNombre(donanteDTO.getNombre());
@@ -47,6 +60,7 @@ public class DonanteServiceImpl implements DonanteService {
                 savedDonante.getUsuario().getId()
         );
     }
+
 
     public void deleteDonante(Long id) {donanteRepository.deleteById(id);}
 

@@ -5,11 +5,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.greenly.dtos.ComentarioCampañaDTO;
 import pe.edu.upc.greenly.dtos.ComentarioDTO;
-import pe.edu.upc.greenly.service.ComentarioService;
+import pe.edu.upc.greenly.services.ComentarioService;
 
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/Greenly/comentarios")
 public class ComentarioController {
 
